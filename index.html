@@ -7,7 +7,6 @@
   <title>ITSupport | IT-аутсорсинг по всей России</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* ===== СБРОС И ОБЩИЕ СТИЛИ ===== */
     * {
       margin: 0;
       padding: 0;
@@ -83,38 +82,8 @@
       transform: translateY(-3px);
       box-shadow: 0 6px 12px rgba(79, 70, 229, 0.3);
     }
-    .btn:active {
-      transform: translateY(0);
-    }
     section { padding: 80px 0; }
 
-    /* ===== ПРЕЛОАДЕР ===== */
-    #preloader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--bg-primary);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      transition: opacity 0.5s, visibility 0.5s;
-    }
-    .spinner {
-      width: 48px;
-      height: 48px;
-      border: 4px solid rgba(79, 70, 229, 0.2);
-      border-top: 4px solid var(--accent);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    /* ===== ШАПКА ===== */
     header {
       background: var(--bg-secondary);
       box-shadow: 0 2px 12px rgba(0,0,0,0.08);
@@ -165,12 +134,9 @@
       background: var(--border);
     }
 
-    /* ===== ГЛАВНАЯ ===== */
     .hero {
       text-align: center;
-      padding: 80px 0 60px;
-      position: relative;
-      overflow: hidden;
+      padding: 100px 0;
     }
     .hero h1 {
       font-size: 2.8rem;
@@ -187,48 +153,7 @@
       margin: 0 auto 30px;
       color: var(--text-secondary);
     }
-    .hero-form {
-      max-width: 600px;
-      margin: 0 auto;
-      background: var(--bg-secondary);
-      padding: 24px;
-      border-radius: 16px;
-      box-shadow: var(--card-shadow);
-      border: 1px solid var(--border);
-    }
-    .form-group {
-      margin-bottom: 16px;
-    }
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 14px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      font-size: 1rem;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
-    }
 
-    /* ===== АНИМАЦИИ ПРИ ПРОКРУТКЕ ===== */
-    .animate-on-scroll {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
-    .animate-on-scroll.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ===== УСЛУГИ / КЕЙСЫ / БЛОГ ===== */
     .section-title {
       text-align: center;
       font-size: 2.2rem;
@@ -245,12 +170,10 @@
     }
     .grid {
       display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 32px;
       margin-top: 40px;
     }
-    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-
     .card {
       background: var(--bg-secondary);
       border-radius: 16px;
@@ -281,7 +204,6 @@
       margin: 12px 0;
     }
 
-    /* ===== ГАРАНТИИ ===== */
     .guarantees-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -311,7 +233,6 @@
     .guarantee-text h4 { font-weight: 700; margin-bottom: 6px; }
     .guarantee-text p { color: var(--text-secondary); font-size: 0.95rem; }
 
-    /* ===== О НАС ===== */
     .about-text {
       max-width: 800px;
       margin: 0 auto;
@@ -319,7 +240,6 @@
       color: var(--text-secondary);
     }
 
-    /* ===== КОНТАКТЫ ===== */
     .contact-methods {
       display: flex;
       gap: 20px;
@@ -344,7 +264,6 @@
     .whatsapp { background: #25D366; color: white; }
     .telegram { background: #0088cc; color: white; }
 
-    /* ===== ФУТЕР ===== */
     footer {
       background: var(--bg-secondary);
       color: var(--text-primary);
@@ -353,7 +272,6 @@
       border-top: 1px solid var(--border);
     }
 
-    /* ===== АДАПТИВНОСТЬ ===== */
     @media (max-width: 768px) {
       .navbar { flex-direction: column; gap: 16px; }
       .hero h1 { font-size: 2.2rem; }
@@ -365,12 +283,6 @@
 </head>
 <body>
 
-  <!-- ПРЕЛОАДЕР -->
-  <div id="preloader">
-    <div class="spinner"></div>
-  </div>
-
-  <!-- ШАПКА -->
   <header>
     <div class="container">
       <nav class="navbar">
@@ -378,9 +290,8 @@
         <ul class="nav-links">
           <li><a href="#home">Главная</a></li>
           <li><a href="#services">Услуги</a></li>
-          <li><a href="#cases">Кейсы</a></li>
           <li><a href="#guarantees">Гарантии</a></li>
-          <li><a href="#blog">Блог</a></li>
+          <li><a href="#about">О нас</a></li>
           <li><a href="#contacts">Контакты</a></li>
         </ul>
         <button class="theme-toggle" id="theme-toggle">🌓</button>
@@ -388,85 +299,46 @@
     </div>
   </header>
 
-  <!-- ГЛАВНАЯ -->
   <section id="home" class="hero">
     <div class="container">
       <h1>IT-аутсорсинг для вашего бизнеса</h1>
       <p>Удалённая техническая поддержка, настройка инфраструктуры и ИТ-консалтинг — быстро, надёжно и по выгодным ценам по всей России.</p>
-      
-      <!-- ФОРМА ЗАЯВКИ НА ГЛАВНОЙ -->
-      <div class="hero-form animate-on-scroll">
-        <h3 style="text-align: center; margin-bottom: 20px;">Оставьте заявку — ответим в течение 15 минут!</h3>
-        <form id="hero-form">
-          <div class="form-group">
-            <input type="text" name="name" placeholder="Ваше имя" required>
-          </div>
-          <div class="form-group">
-            <input type="text" name="contact" placeholder="Телефон или email" required>
-          </div>
-          <div class="form-group">
-            <textarea name="message" placeholder="Опишите задачу"></textarea>
-          </div>
-          <button type="submit" class="btn" style="width:100%;">Отправить заявку</button>
-        </form>
-      </div>
+      <a href="#contacts" class="btn">Связаться с нами</a>
     </div>
   </section>
 
-  <!-- УСЛУГИ -->
-  <section id="services" class="container animate-on-scroll">
+  <section id="services" class="container">
     <h2 class="section-title">Наши услуги</h2>
     <p class="section-subtitle">Профессиональная поддержка для малого и среднего бизнеса — без скрытых платежей и простоев</p>
-    <div class="grid grid-2">
-      <div class="card animate-on-scroll">
+    <div class="grid">
+      <div class="card">
         <h3>Комплексная ИТ-поддержка</h3>
         <p>Полное сопровождение ваших устройств и ПО: обновления, резервное копирование, безопасность.</p>
         <div class="price">от 1 300 ₽/мес</div>
-        <a href="#contacts" class="btn">Заказать</a>
       </div>
-      <div class="card animate-on-scroll">
+      <div class="card">
         <h3>Настройка рабочих мест</h3>
         <p>Удалённая настройка компьютеров, почты, облачных сервисов и корпоративных приложений.</p>
         <div class="price">от 800 ₽/шт</div>
-        <a href="#contacts" class="btn">Заказать</a>
       </div>
-      <div class="card animate-on-scroll">
+      <div class="card">
         <h3>Администрирование серверов</h3>
         <p>Мониторинг, обновление, резервное копирование и оптимизация Linux/Windows-серверов.</p>
         <div class="price">от 2 500 ₽/мес</div>
-        <a href="#contacts" class="btn">Заказать</a>
       </div>
-      <div class="card animate-on-scroll">
+      <div class="card">
         <h3>ИТ-консультации</h3>
         <p>Анализ текущей инфраструктуры и рекомендации по оптимизации и безопасности.</p>
         <div class="price">от 1 800 ₽/час</div>
-        <a href="#contacts" class="btn">Заказать</a>
       </div>
     </div>
   </section>
 
-  <!-- КЕЙСЫ -->
-  <section id="cases" style="background: var(--bg-secondary);" class="container animate-on-scroll">
-    <h2 class="section-title">Примеры работ</h2>
-    <p class="section-subtitle">Реальные кейсы (названия компаний изменены для конфиденциальности)</p>
-    <div class="grid grid-2">
-      <div class="card animate-on-scroll">
-        <h3>ИТ-инфраструктура для логистики</h3>
-        <p>Настроили полную ИТ-инфраструктуру для логистической компании: 25 рабочих мест, файловый сервер, облачные сервисы (Яндекс 360), двухфакторная аутентификация. Работы завершены за 3 дня без остановки бизнеса.</p>
-      </div>
-      <div class="card animate-on-scroll">
-        <h3>Миграция в облако для юридической фирмы</h3>
-        <p>Перевели ИТ-инфраструктуру юридической компании (12 сотрудников) из локального сервера в облако. Настроили резервное копирование, защищённую почту и удалённый доступ. Сократили расходы на 40%.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ГАРАНТИИ -->
-  <section id="guarantees" class="container animate-on-scroll">
+  <section id="guarantees" style="background: var(--bg-secondary);" class="container">
     <h2 class="section-title">Наши гарантии</h2>
     <p class="section-subtitle">Даже на старте мы даём чёткие обязательства — потому что уверены в качестве</p>
     <div class="guarantees-grid">
-      <div class="guarantee-item animate-on-scroll">
+      <div class="guarantee-item">
         <div class="guarantee-icon">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -477,7 +349,7 @@
           <p>Отвечаем в течение 15 минут в рабочее время</p>
         </div>
       </div>
-      <div class="guarantee-item animate-on-scroll">
+      <div class="guarantee-item">
         <div class="guarantee-icon">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -488,7 +360,7 @@
           <p>Работаем по NDA и с двухфакторной аутентификацией</p>
         </div>
       </div>
-      <div class="guarantee-item animate-on-scroll">
+      <div class="guarantee-item">
         <div class="guarantee-icon">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -499,7 +371,7 @@
           <p>Официальное сотрудничество с чёткими условиями</p>
         </div>
       </div>
-      <div class="guarantee-item animate-on-scroll">
+      <div class="guarantee-item">
         <div class="guarantee-icon">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -513,8 +385,7 @@
     </div>
   </section>
 
-  <!-- О НАС -->
-  <section id="about" class="container animate-on-scroll">
+  <section id="about" class="container">
     <h2 class="section-title">О нас</h2>
     <p class="about-text">
       Мы — команда опытных IT-специалистов, предоставляющая услуги аутсорсинга малому и среднему бизнесу.
@@ -523,47 +394,11 @@
     </p>
   </section>
 
-  <!-- БЛОГ -->
-  <section id="blog" style="background: var(--bg-secondary);" class="container animate-on-scroll">
-    <h2 class="section-title">Блог</h2>
-    <p class="section-subtitle">Полезные статьи для бизнеса</p>
-    <div class="grid grid-3">
-      <div class="card animate-on-scroll">
-        <h3>Как выбрать IT-аутсорсинг для малого бизнеса в 2025 году</h3>
-        <p>Разбираем критерии выбора подрядчика, на что обратить внимание и как избежать типичных ошибок.</p>
-        <button class="btn" onclick="alert('Полная статья скоро появится!')">Читать</button>
-      </div>
-      <div class="card animate-on-scroll">
-        <h3>Почему фиксированная цена на IT-поддержку выгоднее почасовой?</h3>
-        <p>Сравниваем модели оплаты и показываем, как фиксированная цена помогает планировать бюджет.</p>
-        <button class="btn" onclick="alert('Полная статья скоро появится!')">Читать</button>
-      </div>
-      <div class="card animate-on-scroll">
-        <h3>5 признаков, что вашему бизнесу срочно нужен IT-аутсорсинг</h3>
-        <p>От частых сбоев до утечек данных — узнайте, когда пора передать ИТ-инфраструктуру профессионалам.</p>
-        <button class="btn" onclick="alert('Полная статья скоро появится!')">Читать</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- КОНТАКТЫ -->
-  <section id="contacts" class="container animate-on-scroll">
+  <section id="contacts" class="container">
     <h2 class="section-title">Свяжитесь с нами</h2>
     <p style="text-align: center; margin-bottom: 30px; color: var(--text-secondary);">
-      Оставьте заявку — ответим в течение 15 минут!
+      Напишите нам в Telegram — ответим в течение 15 минут!
     </p>
-    <form id="contact-form" style="max-width: 650px; margin: 0 auto;">
-      <div class="form-group">
-        <input type="text" name="name" placeholder="Ваше имя" required>
-      </div>
-      <div class="form-group">
-        <input type="text" name="contact" placeholder="Телефон или email" required>
-      </div>
-      <div class="form-group">
-        <textarea name="message" placeholder="Опишите задачу"></textarea>
-      </div>
-      <button type="submit" class="btn" style="width:100%;">Отправить заявку</button>
-    </form>
 
     <div class="contact-methods">
       <!-- WhatsApp -->
@@ -573,8 +408,8 @@
         </svg>
         <span>WhatsApp</span>
       </a>
-      <!-- Telegram -->
-      <a href="https://t.me/ITSupportRus" target="_blank" class="contact-btn telegram">
+      <!-- Telegram БОТ -->
+      <a href="https://t.me/ITSupportRusBot" target="_blank" class="contact-btn telegram">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.5 14.5l-1.5 1-4-3-2-1 7-5-5 7-3-2-1.5-4 8.5 8.5z" />
         </svg>
@@ -583,7 +418,6 @@
     </div>
   </section>
 
-  <!-- ФУТЕР -->
   <footer>
     <div class="container">
       <p>© 2025 ITSupport. Все права защищены.</p>
@@ -591,16 +425,6 @@
   </footer>
 
   <script>
-    // === ПРЕЛОАДЕР ===
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        const preloader = document.getElementById('preloader');
-        preloader.style.opacity = '0';
-        preloader.style.visibility = 'hidden';
-      }, 600);
-    });
-
-    // === ТЕМА ===
     const toggle = document.getElementById('theme-toggle');
     const body = document.body;
     const savedTheme = localStorage.getItem('theme') || 'light';
@@ -614,57 +438,6 @@
       localStorage.setItem('theme', newTheme);
       toggle.textContent = newTheme === 'dark' ? '🌕' : '🌓';
     });
-
-    // === АНИМАЦИЯ ПРИ ПРОКРУТКЕ ===
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.animate-on-scroll').forEach(el => {
-      observer.observe(el);
-    });
-
-    // === ОТПРАВКА ФОРМ НА VERCAL API ===
-    async function sendToTelegram(data) {
-      const response = await fetch('https://my-project-2gtldym0k-weroys-projects.vercel.app/api/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-      return response.ok;
-    }
-
-    function setupForm(form) {
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const formData = new FormData(form);
-        const data = {
-          name: formData.get('name'),
-          contact: formData.get('contact'),
-          message: formData.get('message')
-        };
-
-        const success = await sendToTelegram(data);
-        if (success) {
-          alert('✅ Заявка отправлена! Мы скоро свяжемся с вами.');
-          form.reset();
-        } else {
-          alert('❌ Ошибка отправки. Попробуйте позже или напишите напрямую в WhatsApp/Telegram.');
-        }
-      });
-    }
-
-    // Подключаем обе формы
-    if (document.getElementById('hero-form')) {
-      setupForm(document.getElementById('hero-form'));
-    }
-    if (document.getElementById('contact-form')) {
-      setupForm(document.getElementById('contact-form'));
-    }
   </script>
 </body>
 </html>
