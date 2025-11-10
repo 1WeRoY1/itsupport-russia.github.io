@@ -120,7 +120,7 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--accent); }
-    .theme-toggle, .cta-button {
+    .theme-toggle {
       background: none;
       border: none;
       font-size: 22px;
@@ -134,16 +134,8 @@
       justify-content: center;
       transition: background 0.2s;
     }
-    .theme-toggle:hover, .cta-button:hover {
+    .theme-toggle:hover {
       background: var(--border);
-    }
-    .cta-button {
-      background: var(--accent-gradient);
-      color: white;
-      width: auto;
-      padding: 8px 16px;
-      border-radius: 8px;
-      font-weight: 600;
     }
 
     .hero {
@@ -328,7 +320,7 @@
           <li><a href="#cases">Кейсы</a></li>
           <li><a href="#faq">Вопросы</a></li>
         </ul>
-        <a href="#contacts" class="cta-button">Связаться</a>
+        <button class="theme-toggle" id="theme-toggle">🌓</button>
       </nav>
     </div>
   </header>
