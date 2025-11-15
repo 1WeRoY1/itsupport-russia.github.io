@@ -1,41 +1,3 @@
-<?php
-// 1. Ваши данные
-$botToken = '8317918326:AAHkHlrBy4dDGMUVVayf5iWaDcNCZEcGx3Q';   // ← токен из @BotFather (например: 6047283925:AAH...)
-$chatId   = '8486105391'; // ← ваш личный id или -100... группы (например: 8486105391)
-
-// 2. Принимаем данные (POST-ajax)
-$name  = trim($_POST['name']  ?? '');
-$phone = trim($_POST['phone'] ?? '');
-$email = trim($_POST['email'] ?? '');
-$city  = trim($_POST['city']  ?? '');
-$message = trim($_POST['message'] ?? '');
-$utm_s = trim($_POST['utm_source'] ?? '');
-$utm_m = trim($_POST['utm_medium'] ?? '');
-$utm_c = trim($_POST['utm_campaign'] ?? '');
-
-// 3. Формируем текст
-$text = "🔔 <b>Новая заявка itsupport-russia.ru</b>\n"
-      . ($name ? "<b>Имя:</b> $name\n" : "")
-      . ($phone ? "<b>Телефон:</b> $phone\n" : "")
-      . ($email ? "<b>Email:</b> $email\n" : "")
-      . ($city ? "<b>Город:</b> $city\n" : "")
-      . ($message ? "<b>Сообщение:</b> $message\n" : "")
-      . ($utm_s || $utm_m || $utm_c ? "<b>UTM:</b> $utm_s / $utm_m / $utm_c" : "");
-
-// 4. Отправляем
-$url = "https://api.telegram.org/bot{$botToken}/sendMessage";
-$post = http_build_query([
-  'chat_id' => $chatId,
-  'text'    => $text,
-  'parse_mode' => 'HTML'
-]);
-$opts = ['http' => ['method'=>'POST','header'=>'Content-Type: application/x-www-form-urlencoded','content'=>$post]];
-$context  = stream_context_create($opts);
-@file_get_contents($url, false, $context);
-
-// 5. Отвечаем браузеру
-http_response_code(200);
-echo 'ok';
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -577,14 +539,6 @@ echo 'ok';
         toggle.textContent = newTheme === 'dark' ? '🌕' : '🌓';
       });
     }
-  </script>
-  document.getElementById('leadForm')?.addEventListener('submit',async e=>{
-  e.preventDefault();
-  const f=new FormData(e.target);
-  const r=await fetch('/telegram.php',{method:'POST',body:f});
-  if(r.ok){alert('Заявка отправлена! Мы напишем в Telegram в течение 15 минут.');e.target.reset();}
-  else{alert('Ошибка отправки, попробуйте позже.');}
-});
 </script>
 </body>
 </html>
