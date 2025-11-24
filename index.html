@@ -118,9 +118,18 @@
       padding: 20px 0;
     }
     .logo img {
-      height: 36px;
+      height: 60px;
       max-width: 100%;
       object-fit: contain;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .logo span {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--accent);
+      vertical-align: middle;
+      margin-left: 12px;
     }
     .nav-links {
       display: flex;
@@ -316,6 +325,8 @@
       .nav-links { flex-wrap: wrap; justify-content: center; }
       section { padding: 60px 0; }
       .contact-btn { width: 100%; justify-content: center; }
+      .logo img { height: 48px; }
+      .logo span { font-size: 18px; }
     }
   </style>
 </head>
@@ -325,7 +336,8 @@
     <div class="container">
       <nav class="navbar">
         <div class="logo">
-          <img src="/logo.png" alt="ITSupport" style="height: 36px; display: block;">
+          <img src="/logo.png" alt="ITSupport" style="height: 60px; display: inline-block; margin-right: 12px;">
+          <span>ITSupport</span>
         </div>
         <ul class="nav-links">
           <li><a href="#home">Главная</a></li>
