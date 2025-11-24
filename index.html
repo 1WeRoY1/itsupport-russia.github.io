@@ -117,13 +117,10 @@
       align-items: center;
       padding: 20px 0;
     }
-    .logo {
-      font-size: 26px;
-      font-weight: 800;
-      background: var(--accent-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .logo img {
+      height: 36px;
+      max-width: 100%;
+      object-fit: contain;
     }
     .nav-links {
       display: flex;
@@ -327,7 +324,9 @@
   <header>
     <div class="container">
       <nav class="navbar">
-        <div class="logo">ITSupport</div>
+        <div class="logo">
+          <img src="logo.png" alt="ITSupport" style="height: 36px; display: block;">
+        </div>
         <ul class="nav-links">
           <li><a href="#home">Главная</a></li>
           <li><a href="#services">Услуги</a></li>
@@ -538,6 +537,6 @@
         toggle.textContent = newTheme === 'dark' ? '🌕' : '🌓';
       });
     }
-</script>
+  </script>
 </body>
 </html>
