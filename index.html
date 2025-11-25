@@ -117,19 +117,13 @@
       align-items: center;
       padding: 20px 0;
     }
-    .logo img {
-      height: 60px;
-      max-width: 100%;
-      object-fit: contain;
-      display: inline-block;
-      vertical-align: middle;
-    }
-    .logo span {
-      font-size: 20px;
+    .logo {
+      font-size: 26px;
       font-weight: 800;
-      color: var(--accent);
-      vertical-align: middle;
-      margin-left: 12px;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .nav-links {
       display: flex;
@@ -325,8 +319,6 @@
       .nav-links { flex-wrap: wrap; justify-content: center; }
       section { padding: 60px 0; }
       .contact-btn { width: 100%; justify-content: center; }
-      .logo img { height: 48px; }
-      .logo span { font-size: 18px; }
     }
   </style>
 </head>
@@ -335,10 +327,7 @@
   <header>
     <div class="container">
       <nav class="navbar">
-        <div class="logo">
-          <img src="/logo.png" alt="ITSupport" style="height: 60px; display: inline-block; margin-right: 12px;">
-          <span>ITSupport</span>
-        </div>
+        <div class="logo">ITSupport</div>
         <ul class="nav-links">
           <li><a href="#home">Главная</a></li>
           <li><a href="#services">Услуги</a></li>
@@ -516,7 +505,7 @@
         </svg>
         <span>Написать в WhatsApp</span>
       </a>
-      <a href="https://t.me/+79201703707" target="_blank" class="contact-btn telegram">
+      <a href="https://t.me/itsupport_russia_bot" target="_blank" class="contact-btn telegram">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.5 14.5l-1.5 1-4-3-2-1 7-5-5 7-3-2-1.5-4 8.5 8.5z" />
         </svg>
