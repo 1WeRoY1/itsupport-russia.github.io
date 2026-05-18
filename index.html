@@ -1,543 +1,1294 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="IT-аутсорсинг по всей России — удалённая поддержка, настройка инфраструктуры и ИТ-консалтинг для бизнеса по фиксированной цене.">
-  <title>ITSupport | IT-аутсорсинг по всей России</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITSupport | IT-аутсорсинг по всей России</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=105215813', 'ym');
 
-  <!-- Yandex.Metrika counter -->
-  <script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=105215813', 'ym');
+        ym(105215813, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/105215813" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    
+    <style>
+        /* ==================== CSS VARIABLES ==================== */
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #06b6d4;
+            --accent: #f59e0b;
+            
+            /* Dark theme (default) */
+            --bg-deep: #020617;
+            --bg-surface: #0f172a;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --text-primary: #f8fafc;
+            --text-secondary: #64748b;
+            --border: rgba(255, 255, 255, 0.1);
+            --shadow: rgba(0, 0, 0, 0.3);
+            --gradient-overlay: rgba(99, 102, 241, 0.15);
+            --nav-bg: rgba(15, 23, 42, 0.8);
+            --comparison-header: linear-gradient(135deg, #6366f1, #4f46e5);
+            --btn-secondary-bg: transparent;
+            --btn-secondary-border: rgba(255, 255, 255, 0.1);
+            --btn-secondary-hover: rgba(255, 255, 255, 0.05);
+            --table-hover: rgba(99, 102, 241, 0.05);
+            --glow-opacity: 0.3;
+            --particle-opacity: 0.3;
+            --icon-filter: none;
+            --transition-speed: 0.4s;
+        }
 
-    ym(105215813, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
-  </script>
-  <noscript><div><img src="https://mc.yandex.ru/watch/105215813" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-  <!-- /Yandex.Metrika counter -->
+        [data-theme="light"] {
+            --bg-deep: #f8fafc;
+            --bg-surface: #ffffff;
+            --bg-card: rgba(255, 255, 255, 0.7);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --border: rgba(0, 0, 0, 0.08);
+            --shadow: rgba(0, 0, 0, 0.08);
+            --gradient-overlay: rgba(99, 102, 241, 0.08);
+            --nav-bg: rgba(255, 255, 255, 0.85);
+            --comparison-header: linear-gradient(135deg, #6366f1, #4f46e5);
+            --btn-secondary-bg: #ffffff;
+            --btn-secondary-border: rgba(0, 0, 0, 0.1);
+            --btn-secondary-hover: #f1f5f9;
+            --table-hover: rgba(99, 102, 241, 0.03);
+            --glow-opacity: 0.15;
+            --particle-opacity: 0.15;
+            --icon-filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-    :root {
-      --bg-primary: #f9fafb;
-      --bg-secondary: #ffffff;
-      --text-primary: #111824;
-      --text-secondary: #4b5563;
-      --accent: #4f46e5;
-      --accent-gradient: linear-gradient(135deg, #6366f1, #8b5cf6);
-      --card-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      --border: #e5e7eb;
-    }
-    [data-theme="dark"] {
-      --bg-primary: #0f172a;
-      --bg-secondary: #1e293b;
-      --text-primary: #f8fafc;
-      --text-secondary: #cbd5e1;
-      --accent: #818cf8;
-      --accent-gradient: linear-gradient(135deg, #818cf8, #a78bfa);
-      --card-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      --border: #334155;
-    }
-    body {
-      background-color: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.6;
-      transition: background-color 0.3s, color 0.3s;
-      overflow-x: hidden;
-      position: relative;
-    }
-    body::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image:
-        radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.04) 0%, transparent 20%),
-        radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.04) 0%, transparent 20%);
-      pointer-events: none;
-      z-index: -1;
-    }
-    [data-theme="dark"] body::before {
-      background-image:
-        radial-gradient(circle at 10% 20%, rgba(129, 140, 248, 0.06) 0%, transparent 20%),
-        radial-gradient(circle at 90% 80%, rgba(167, 139, 250, 0.06) 0%, transparent 20%);
-    }
-    a { text-decoration: none; color: inherit; }
-    ul { list-style: none; }
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .btn {
-      display: inline-block;
-      padding: 12px 28px;
-      background: var(--accent-gradient);
-      color: white;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: all 0.3s ease, transform 0.2s;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 4px 6px rgba(79, 70, 229, 0.2);
-    }
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 12px rgba(79, 70, 229, 0.3);
-    }
-    .btn-large {
-      font-size: 1.1rem;
-      padding: 16px 32px;
-    }
-    section { padding: 80px 0; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    header {
-      background: var(--bg-secondary);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      transition: background 0.3s, box-shadow 0.3s;
-    }
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 0;
-    }
-    .logo {
-      font-size: 26px;
-      font-weight: 800;
-      background: var(--accent-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .nav-links {
-      display: flex;
-      gap: 28px;
-    }
-    .nav-links a {
-      font-weight: 600;
-      color: var(--text-secondary);
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--accent); }
-    .theme-toggle {
-      background: none;
-      border: none;
-      font-size: 22px;
-      cursor: pointer;
-      color: var(--text-secondary);
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s;
-    }
-    .theme-toggle:hover {
-      background: var(--border);
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    .hero {
-      text-align: center;
-      padding: 100px 0;
-    }
-    .hero h1 {
-      font-size: 2.8rem;
-      font-weight: 800;
-      margin-bottom: 20px;
-      background: var(--accent-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .hero p {
-      font-size: 1.25rem;
-      max-width: 720px;
-      margin: 0 auto 30px;
-      color: var(--text-secondary);
-    }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
+        }
 
-    .section-title {
-      text-align: center;
-      font-size: 2.2rem;
-      font-weight: 800;
-      margin-bottom: 20px;
-      color: var(--text-primary);
-    }
-    .section-subtitle {
-      text-align: center;
-      color: var(--text-secondary);
-      max-width: 700px;
-      margin: 0 auto 60px;
-      font-size: 1.1rem;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 32px;
-      margin-top: 40px;
-    }
-    .card {
-      background: var(--bg-secondary);
-      border-radius: 16px;
-      padding: 32px;
-      box-shadow: var(--card-shadow);
-      border: 1px solid var(--border);
-      transition: all 0.3s ease;
-    }
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.1);
-    }
-    [data-theme="dark"] .card:hover {
-      box-shadow: 0 12px 24px rgba(0,0,0,0.25);
-    }
-    .card h3, .card h4 {
-      margin-bottom: 16px;
-      font-weight: 700;
-    }
-    .card p { color: var(--text-secondary); margin-bottom: 16px; }
-    .price {
-      font-size: 1.4rem;
-      font-weight: 800;
-      background: var(--accent-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin: 12px 0;
-    }
+        /* ==================== ANIMATED BACKGROUND ==================== */
+        .hero-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, var(--bg-deep) 0%, var(--bg-surface) 50%, #1e1b4b 100%);
+            overflow: hidden;
+            transition: background var(--transition-speed) ease;
+        }
 
-    .how-it-works {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 24px;
-      margin-top: 40px;
-    }
-    .step {
-      display: flex;
-      gap: 16px;
-    }
-    .step-number {
-      flex-shrink: 0;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: var(--accent-gradient);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-    }
+        [data-theme="light"] .hero-bg {
+            background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 50%, #e0e7ff 100%);
+        }
 
-    .comparison {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 40px auto;
-      max-width: 800px;
-    }
-    .comparison th, .comparison td {
-      padding: 16px;
-      text-align: center;
-      border: 1px solid var(--border);
-    }
-    .comparison th {
-      background: var(--bg-secondary);
-      font-weight: 700;
-    }
-    .comparison tr:nth-child(even) {
-      background: rgba(79, 70, 229, 0.03);
-    }
-    [data-theme="dark"] .comparison tr:nth-child(even) {
-      background: rgba(129, 140, 248, 0.05);
-    }
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--gradient-overlay) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.1) 0%, transparent 40%);
+            animation: rotate 30s linear infinite;
+        }
 
-    .faq-item {
-      margin-bottom: 24px;
-    }
-    .faq-question {
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: var(--accent);
-    }
-    .faq-answer {
-      color: var(--text-secondary);
-    }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
 
-    .contact-methods {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 30px;
-    }
-    .contact-btn {
-      padding: 16px 32px;
-      border-radius: 12px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      transition: transform 0.2s, box-shadow 0.2s;
-      font-size: 1.1rem;
-    }
-    .contact-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-    }
-    .whatsapp { background: #25D366; color: white; }
-    .telegram { background: #0088cc; color: white; }
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(99, 102, 241, var(--particle-opacity));
+            animation: float 15s infinite ease-in-out;
+            transition: background var(--transition-speed) ease;
+        }
 
-    footer {
-      background: var(--bg-secondary);
-      color: var(--text-primary);
-      text-align: center;
-      padding: 30px 0;
-      border-top: 1px solid var(--border);
-    }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+        }
 
-    @media (max-width: 768px) {
-      .navbar { flex-direction: column; gap: 16px; }
-      .hero h1 { font-size: 2.2rem; }
-      .hero p { font-size: 1.1rem; }
-      .nav-links { flex-wrap: wrap; justify-content: center; }
-      section { padding: 60px 0; }
-      .contact-btn { width: 100%; justify-content: center; }
-    }
-  </style>
+        /* ==================== GLOW EFFECTS ==================== */
+        .glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: var(--glow-opacity);
+            pointer-events: none;
+            transition: opacity var(--transition-speed) ease;
+        }
+
+        .glow-1 {
+            background: var(--primary);
+            top: 10%;
+            left: -10%;
+            animation: float-glow 10s infinite ease-in-out;
+        }
+
+        .glow-2 {
+            background: var(--secondary);
+            bottom: 10%;
+            right: -10%;
+            animation: float-glow 12s infinite ease-in-out reverse;
+        }
+
+        @keyframes float-glow {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(50px, -50px); }
+        }
+
+        /* ==================== NAVIGATION ==================== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: var(--nav-bg);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease, background var(--transition-speed) ease;
+        }
+
+        nav.scrolled {
+            padding: 1rem 5%;
+            box-shadow: 0 4px 30px var(--shadow);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* ==================== THEME TOGGLE ==================== */
+        .theme-toggle {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease, background var(--transition-speed) ease, border var(--transition-speed) ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .theme-toggle svg {
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .theme-toggle .sun-icon {
+            color: #f59e0b;
+            transform: rotate(0deg) scale(1);
+            opacity: 0;
+        }
+
+        .theme-toggle .moon-icon {
+            color: #94a3b8;
+            transform: rotate(0deg) scale(1);
+            opacity: 1;
+        }
+
+        [data-theme="light"] .theme-toggle .sun-icon {
+            opacity: 1;
+            transform: rotate(180deg) scale(1);
+        }
+
+        [data-theme="light"] .theme-toggle .moon-icon {
+            opacity: 0;
+            transform: rotate(-180deg) scale(0.5);
+        }
+
+        /* ==================== HERO SECTION ==================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 5% 5rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--secondary);
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            animation: pulse 2s infinite;
+            transition: background var(--transition-speed) ease, border var(--transition-speed) ease;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(6, 182, 212, 0); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+            color: var(--text-primary);
+            transition: color var(--transition-speed) ease;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradient 3s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            transition: color var(--transition-speed) ease;
+        }
+
+        /* ==================== BUTTONS ==================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--btn-secondary-bg);
+            border: 2px solid var(--btn-secondary-border);
+            color: var(--text-primary);
+            margin-left: 1rem;
+            box-shadow: none;
+            transition: all 0.3s ease, background var(--transition-speed) ease, border var(--transition-speed) ease, color var(--transition-speed) ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            background: var(--btn-secondary-hover);
+        }
+
+        /* ==================== SECTIONS ==================== */
+        section {
+            padding: 6rem 5%;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .section-header.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            color: var(--text-primary);
+            transition: color var(--transition-speed) ease;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            transition: color var(--transition-speed) ease;
+        }
+
+        /* ==================== SERVICE CARDS ==================== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            backdrop-filter: blur(20px);
+            transition: all 0.4s ease, background var(--transition-speed) ease, border var(--transition-speed) ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .service-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            filter: var(--icon-filter);
+            transition: filter var(--transition-speed) ease;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: var(--text-primary);
+            transition: color var(--transition-speed) ease;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ==================== STEPS ==================== */
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 10%;
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            opacity: 0.3;
+        }
+
+        .step {
+            text-align: center;
+            flex: 1;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .step.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .step:hover .step-number {
+            transform: scale(1.1);
+        }
+
+        .step h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            transition: color var(--transition-speed) ease;
+        }
+
+        .step p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            padding: 0 1rem;
+            transition: color var(--transition-speed) ease;
+        }
+
+        /* ==================== CASES ==================== */
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .case-card {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(6, 182, 212, 0.05));
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.8s ease, border var(--transition-speed) ease;
+        }
+
+        .case-card.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .case-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1), transparent);
+            animation: rotate 20s linear infinite;
+        }
+
+        .case-card h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+            color: var(--text-primary);
+            transition: color var(--transition-speed) ease;
+        }
+
+        .case-card ul {
+            list-style: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        .case-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-secondary);
+            transition: color var(--transition-speed) ease;
+        }
+
+        .case-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        /* ==================== COMPARISON TABLE ==================== */
+        .comparison {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 0.8s ease, background var(--transition-speed) ease, border var(--transition-speed) ease;
+        }
+
+        .comparison.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .comparison-header {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            background: var(--comparison-header);
+            padding: 1.5rem 2rem;
+            font-weight: 700;
+            color: white;
+            transition: background var(--transition-speed) ease;
+        }
+
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            padding: 1.2rem 2rem;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.3s, border var(--transition-speed) ease;
+        }
+
+        .comparison-row:hover {
+            background: var(--table-hover);
+        }
+
+        .comparison-row:last-child {
+            border-bottom: none;
+        }
+
+        .comparison-row div:first-child {
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: color var(--transition-speed) ease;
+        }
+
+        .comparison-row div:nth-child(2) {
+            color: var(--text-secondary);
+            transition: color var(--transition-speed) ease;
+        }
+
+        .comparison-row .highlight {
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        /* ==================== FAQ ==================== */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease, background var(--transition-speed) ease, border var(--transition-speed) ease;
+        }
+
+        .faq-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .faq-question {
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: color 0.3s;
+            color: var(--text-primary);
+        }
+
+        .faq-question:hover {
+            color: var(--primary);
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+            color: var(--primary);
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s;
+            padding: 0 2rem;
+            color: var(--text-secondary);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 0 2rem 1.5rem;
+        }
+
+        /* ==================== CONTACT SECTION ==================== */
+        .contact-section {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(6, 182, 212, 0.05));
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            transition: border var(--transition-speed) ease;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .contact-btn.telegram {
+            background: #0088cc;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 136, 204, 0.3);
+        }
+
+        .contact-btn.whatsapp {
+            background: #25d366;
+            color: white;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-section > p {
+            color: var(--text-secondary);
+            transition: color var(--transition-speed) ease;
+        }
+
+        /* ==================== FOOTER ==================== */
+        footer {
+            text-align: center;
+            padding: 3rem 5%;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border);
+            transition: color var(--transition-speed) ease, border var(--transition-speed) ease;
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .nav-right {
+                gap: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .steps {
+                flex-direction: column;
+                gap: 3rem;
+            }
+            
+            .steps::before {
+                display: none;
+            }
+            
+            .comparison-header,
+            .comparison-row {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            
+            .comparison-row div {
+                text-align: center;
+            }
+            
+            .btn-secondary {
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+        }
+
+        /* ==================== PARALLAX ==================== */
+        .parallax {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+    </style>
 </head>
 <body>
+    <!-- Animated Background -->
+    <div class="hero-bg" id="particles"></div>
+    
+    <!-- Glow Effects -->
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
 
-  <header>
-    <div class="container">
-      <nav class="navbar">
+    <!-- Navigation -->
+    <nav id="navbar">
         <div class="logo">ITSupport</div>
-        <ul class="nav-links">
-          <li><a href="#home">Главная</a></li>
-          <li><a href="#services">Услуги</a></li>
-          <li><a href="#how-it-works">Как это работает</a></li>
-          <li><a href="#cases">Кейсы</a></li>
-          <li><a href="#faq">Вопросы</a></li>
-        </ul>
-        <button class="theme-toggle" id="theme-toggle">🌓</button>
-      </nav>
-    </div>
-  </header>
-
-  <section id="home" class="hero">
-    <div class="container">
-      <h1>IT-аутсорсинг по всей России</h1>
-      <p>Ваш бизнес работает без сбоев — вы платите фиксированную цену, мы — решаем всё остальное.</p>
-      <a href="#contacts" class="btn btn-large">Написать в Telegram</a>
-    </div>
-  </section>
-
-  <section id="services" class="container">
-    <h2 class="section-title">Наши услуги</h2>
-    <p class="section-subtitle">Профессиональная поддержка для малого и среднего бизнеса — без скрытых платежей и простоев</p>
-    <div class="grid">
-      <div class="card">
-        <h3>Комплексная ИТ-поддержка</h3>
-        <p>Полное сопровождение ваших устройств и ПО: обновления, резервное копирование, безопасность.</p>
-        <div class="price">от 1 300 ₽/мес</div>
-      </div>
-      <div class="card">
-        <h3>Настройка рабочих мест</h3>
-        <p>Удалённая настройка компьютеров, почты, облачных сервисов и корпоративных приложений.</p>
-        <div class="price">от 800 ₽/шт</div>
-      </div>
-      <div class="card">
-        <h3>Администрирование серверов</h3>
-        <p>Мониторинг, обновление, резервное копирование и оптимизация Linux/Windows-серверов.</p>
-        <div class="price">от 2 500 ₽/мес</div>
-      </div>
-      <div class="card">
-        <h3>ИТ-консультации</h3>
-        <p>Анализ текущей инфраструктуры и рекомендации по оптимизации и безопасности.</p>
-        <div class="price">от 1 800 ₽/час</div>
-      </div>
-    </div>
-  </section>
-
-  <section id="how-it-works" class="container">
-    <h2 class="section-title">Как это работает</h2>
-    <p class="section-subtitle">Просто, быстро и без простоев — за 5 шагов</p>
-    <div class="how-it-works">
-      <div class="step">
-        <div class="step-number">1</div>
-        <div>
-          <strong>Вы пишете нам</strong> в Telegram или WhatsApp
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="#how">Как работает</a></li>
+                <li><a href="#cases">Кейсы</a></li>
+                <li><a href="#compare">Сравнение</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+            
+            <!-- Theme Toggle Button -->
+            <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
+                <!-- Moon Icon (Dark mode) -->
+                <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+                <!-- Sun Icon (Light mode) -->
+                <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+            </button>
         </div>
-      </div>
-      <div class="step">
-        <div class="step-number">2</div>
-        <div>
-          <strong>Мы отвечаем в течение 15 минут</strong> и уточняем задачу
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">🚀 Работаем по всей России</div>
+            <h1>Ваш бизнес работает без сбоев — <span>мы решаем всё остальное</span></h1>
+            <p>IT-аутсорсинг для малого и среднего бизнеса. Фиксированная цена, никаких скрытых платежей и простоев.</p>
+            <div>
+                <a href="https://t.me/your_telegram" class="btn" target="_blank">
+                    <span>Написать в Telegram</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </a>
+                <a href="#services" class="btn btn-secondary">Узнать больше</a>
+            </div>
         </div>
-      </div>
-      <div class="step">
-        <div class="step-number">3</div>
-        <div>
-          <strong>Подключаемся удалённо</strong> — без выезда и простоев
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+        <div class="section-header">
+            <h2>Наши услуги</h2>
+            <p>Профессиональная поддержка для малого и среднего бизнеса — без скрытых платежей и простоев</p>
         </div>
-      </div>
-      <div class="step">
-        <div class="step-number">4</div>
-        <div>
-          <strong>Решаем проблему</strong> или настраиваем систему под ваш бизнес
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🖥️</div>
+                <h3>Комплексная ИТ-поддержка</h3>
+                <p>Полное сопровождение ваших устройств и ПО: обновления, резервное копирование, безопасность.</p>
+                <div class="price">от 1 300 ₽/мес</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">⚙️</div>
+                <h3>Настройка рабочих мест</h3>
+                <p>Удалённая настройка компьютеров, почты, облачных сервисов и корпоративных приложений.</p>
+                <div class="price">от 800 ₽/шт</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🖧</div>
+                <h3>Администрирование серверов</h3>
+                <p>Мониторинг, обновление, резервное копирование и оптимизация Linux/Windows-серверов.</p>
+                <div class="price">от 2 500 ₽/мес</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💡</div>
+                <h3>ИТ-консультации</h3>
+                <p>Анализ текущей инфраструктуры и рекомендации по оптимизации и безопасности.</p>
+                <div class="price">от 1 800 ₽/час</div>
+            </div>
         </div>
-      </div>
-      <div class="step">
-        <div class="step-number">5</div>
-        <div>
-          <strong>Заключаем договор</strong> — прозрачно, без скрытых платежей
+    </section>
+
+    <!-- How It Works -->
+    <section id="how">
+        <div class="section-header">
+            <h2>Как это работает</h2>
+            <p>Просто, быстро и без простоев — за 5 шагов</p>
         </div>
-      </div>
-    </div>
-  </section>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h4>Вы пишете нам</h4>
+                <p>В Telegram или WhatsApp</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h4>Ответ за 15 минут</h4>
+                <p>Уточняем задачу</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h4>Подключаемся удалённо</h4>
+                <p>Без выезда и простоев</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h4>Решаем проблему</h4>
+                <p>Настраиваем систему</p>
+            </div>
+            <div class="step">
+                <div class="step-number">5</div>
+                <h4>Заключаем договор</h4>
+                <p>Прозрачно, без скрытых платежей</p>
+            </div>
+        </div>
+    </section>
 
-  <section id="cases" style="background: var(--bg-secondary);" class="container">
-    <h2 class="section-title">Реальные кейсы</h2>
-    <p class="section-subtitle">Анонимные примеры — потому что конфиденциальность важна</p>
-    <div class="grid">
-      <div class="card">
-        <h3>Логистическая компания (35 сотрудников)</h3>
-        <ul>
-          <li>Полная настройка ИТ-инфраструктуры за 3 дня</li>
-          <li>Перевод на облачную почту и резервное копирование</li>
-          <li>Экономия 45 000 ₽/мес по сравнению с штатным админом</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Юридическая фирма в Казани</h3>
-        <ul>
-          <li>Миграция с локального сервера в облако</li>
-          <li>Настройка защищённого доступа и 2FA</li>
-          <li>Ноль простоев за 6 месяцев</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+    <!-- Cases -->
+    <section id="cases">
+        <div class="section-header">
+            <h2>Реальные кейсы</h2>
+            <p>Анонимные примеры — потому что конфиденциальность важна</p>
+        </div>
+        <div class="cases-grid">
+            <div class="case-card">
+                <h4>🏢 Логистическая компания (35 сотрудников)</h4>
+                <ul>
+                    <li>Полная настройка ИТ-инфраструктуры за 3 дня</li>
+                    <li>Перевод на облачную почту и резервное копирование</li>
+                    <li>Экономия 45 000 ₽/мес по сравнению с штатным админом</li>
+                </ul>
+            </div>
+            <div class="case-card">
+                <h4>⚖️ Юридическая фирма в Казани</h4>
+                <ul>
+                    <li>Миграция с локального сервера в облако</li>
+                    <li>Настройка защищённого доступа и 2FA</li>
+                    <li>Ноль простоев за 6 месяцев</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
-  <section id="comparison" class="container">
-    <h2 class="section-title">Почему выгоднее с нами?</h2>
-    <table class="comparison">
-      <thead>
-        <tr>
-          <th>Что вы получаете</th>
-          <th>Если сами</th>
-          <th>С нами</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Стоимость</td>
-          <td>От 60 000 ₽/мес (админ + лицензии)</td>
-          <td><strong>От 1 300 ₽/мес за пользователя</strong></td>
-        </tr>
-        <tr>
-          <td>Ответ на сбой</td>
-          <td>Через часы или дни</td>
-          <td><strong>В течение 15 минут</strong></td>
-        </tr>
-        <tr>
-          <td>Обновления</td>
-          <td>Забыли? Сломалось.</td>
-          <td><strong>Автоматически + тестирование</strong></td>
-        </tr>
-        <tr>
-          <td>Безопасность</td>
-          <td>Нет резервных копий</td>
-          <td><strong>Шифрование + 2FA + NDA</strong></td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+    <!-- Comparison -->
+    <section id="compare">
+        <div class="section-header">
+            <h2>Почему выгоднее с нами?</h2>
+            <p>Сравните сами</p>
+        </div>
+        <div class="comparison">
+            <div class="comparison-header">
+                <div>Что вы получаете</div>
+                <div>Если сами</div>
+                <div>С нами</div>
+            </div>
+            <div class="comparison-row">
+                <div>Стоимость</div>
+                <div>От 60 000 ₽/мес</div>
+                <div class="highlight">От 1 300 ₽/мес</div>
+            </div>
+            <div class="comparison-row">
+                <div>Ответ на сбой</div>
+                <div>Через часы или дни</div>
+                <div class="highlight">В течение 15 минут</div>
+            </div>
+            <div class="comparison-row">
+                <div>Обновления</div>
+                <div>Забыли? Сломалось.</div>
+                <div class="highlight">Автоматически + тестирование</div>
+            </div>
+            <div class="comparison-row">
+                <div>Безопасность</div>
+                <div>Нет резервных копий</div>
+                <div class="highlight">Шифрование + 2FA + NDA</div>
+            </div>
+        </div>
+    </section>
 
-  <section id="faq" style="background: var(--bg-secondary);" class="container">
-    <h2 class="section-title">Часто задаваемые вопросы</h2>
-    <div class="grid">
-      <div class="card">
-        <div class="faq-question">Вы же только начинаете — почему вам доверять?</div>
-        <div class="faq-answer">У нас за плечами 5+ лет в ИТ, просто работали в других компаниях. Сейчас делаем всё под своим брендом.</div>
-      </div>
-      <div class="card">
-        <div class="faq-question">А если вы не справитесь?</div>
-        <div class="faq-answer">Мы не берём задачи, которые не можем решить. Если не уверены — честно скажем.</div>
-      </div>
-      <div class="card">
-        <div class="faq-question">Нужно ли менять оборудование?</div>
-        <div class="faq-answer">Нет. Мы оптимизируем то, что у вас есть — без навязывания нового.</div>
-      </div>
-      <div class="card">
-        <div class="faq-question">Есть ли пробный период?</div>
-        <div class="faq-answer">Да! Первый аудит — бесплатно. Пробный период 3 дня — без обязательств.</div>
-      </div>
-    </div>
-  </section>
+    <!-- FAQ -->
+    <section id="faq">
+        <div class="section-header">
+            <h2>Часто задаваемые вопросы</h2>
+            <p>Всё, что вы хотели знать</p>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Вы же только начинаете — почему вам доверять?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    У нас за плечами 5+ лет в ИТ, просто работали в других компаниях. Сейчас делаем всё под своим брендом.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>А если вы не справитесь?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Мы не берём задачи, которые не можем решить. Если не уверены — честно скажем.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Нужно ли менять оборудование?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Нет. Мы оптимизируем то, что у вас есть — без навязывания нового.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Есть ли пробный период?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Да! Первый аудит — бесплатно. Пробный период 3 дня — без обязательств.
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <section id="contacts" class="container">
-    <h2 class="section-title">Свяжитесь с нами</h2>
-    <p style="text-align: center; margin-bottom: 30px; color: var(--text-secondary);">
-      Напишите нам в Telegram или WhatsApp — ответим в течение 15 минут!
-    </p>
+    <!-- Contact -->
+    <section id="contact" class="contact-section">
+        <div class="section-header">
+            <h2>Свяжитесь с нами</h2>
+            <p>Напишите нам в Telegram или WhatsApp — ответим в течение 15 минут!</p>
+        </div>
+        <div class="contact-buttons">
+            <a href="https://wa.me/your_number" class="contact-btn whatsapp" target="_blank">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                </svg>
+                Написать в WhatsApp
+            </a>
+            <a href="https://t.me/your_telegram" class="contact-btn telegram" target="_blank">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                </svg>
+                Написать в Telegram
+            </a>
+        </div>
+        <p style="margin-top: 2rem;">Первый аудит — бесплатно. Работаем по всей России.</p>
+    </section>
 
-    <div class="contact-methods">
-      <a href="https://wa.me/79201703707" target="_blank" class="contact-btn whatsapp">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M21 9c0 4.5-3.5 8.5-8 9-1.5.2-3-.5-4-1.5L3 18l1.5-4c-1-1-1.7-2.5-1.5-4 1-4.5 5-8 9.5-8 2.5 0 4.8.8 6.5 2.5L21 9z" />
-        </svg>
-        <span>Написать в WhatsApp</span>
-      </a>
-      <a href="https://t.me/itsupport_russia_bot" target="_blank" class="contact-btn telegram">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.5 14.5l-1.5 1-4-3-2-1 7-5-5 7-3-2-1.5-4 8.5 8.5z" />
-        </svg>
-        <span>Написать в Telegram</span>
-      </a>
-    </div>
-    <p style="text-align: center; margin-top: 20px; color: var(--text-secondary);">
-      Первый аудит — бесплатно. Работаем по всей России.
-    </p>
-  </section>
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 ITSupport. Все права защищены.</p>
+    </footer>
 
-  <footer>
-    <div class="container">
-      <p>© 2025 ITSupport — Надёжный ИТ-аутсорсинг для бизнеса по всей России</p>
-    </div>
-  </footer>
+    <script>
+        // ==================== THEME MANAGEMENT ====================
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        
+        // Check for saved theme preference or default to dark
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', currentTheme);
+        
+        // Toggle theme function
+        function toggleTheme() {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+        
+        themeToggle.addEventListener('click', toggleTheme);
+        
+        // Check system preference on first visit if no saved preference
+        if (!localStorage.getItem('theme')) {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            html.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+        }
 
-  <script>
-    const toggle = document.getElementById('theme-toggle');
-    const body = document.body;
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    body.setAttribute('data-theme', savedTheme);
-    if (toggle) {
-      toggle.textContent = savedTheme === 'dark' ? '🌕' : '🌓';
-      toggle.addEventListener('click', () => {
-        const current = body.getAttribute('data-theme');
-        const newTheme = current === 'dark' ? 'light' : 'dark';
-        body.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        toggle.textContent = newTheme === 'dark' ? '🌕' : '🌓';
-      });
-    }
-  </script>
+        // ==================== PARTICLES ====================
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.width = Math.random() * 4 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // ==================== NAVIGATION SCROLL ====================
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ==================== INTERSECTION OBSERVER ====================
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section-header, .service-card, .step, .case-card, .comparison, .faq-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ==================== FAQ ACCORDION ====================
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                document.querySelectorAll('.faq-item').forEach(faq => {
+                    faq.classList.remove('active');
+                });
+                
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // ==================== SMOOTH SCROLL ====================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ==================== PARALLAX ====================
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero-bg');
+            parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+    </script>
 </body>
 </html>
