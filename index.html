@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ru" data-theme="dark">
 <head>
-<!-- CSP первым тегом: ограничиваем источники скриптов/стилей/соединений.
-     Уче­н yarn­dex-метрика и иконки. Если вебвизор начнёт чудить — ослабьте frame-src. -->
+<!-- CSP: ограничиваем источники скриптов/стилей/соединений.
+     Учтены Яндекс.Метрика, иконки Lucide и шрифты. Если вебвизор начнёт чудить — ослабьте frame-src. -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://mc.yandex.ru; connect-src 'self' https://mc.yandex.ru; frame-src https://mc.yandex.ru; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,9 +53,9 @@
     --line:rgba(255,255,255,.09);
     --text:#e8edf3;
     --muted:#9fb0bf;
-    --acc-fill:#ffb454;   /* заливка кнопок, курсоров, графики */
+    --acc-fill:#ffb454;
     --acc-fill-hi:#ffd9a0;
-    --acc-ink:#ffb454;    /* акцентный текст */
+    --acc-ink:#ffb454;
     --acc-ink-soft:#ffd9a0;
     --acc-rgb:255,180,84;
     --on-acc:#171006;
@@ -279,6 +279,55 @@
   .faq-in{overflow:hidden}
   .faq-in p{padding:0 22px 20px 72px;color:var(--muted);max-width:640px;font-size:14.5px}
 
+  /* ==================== статус заявки (трекинг) ==================== */
+  .track{border:1px solid var(--line);border-radius:14px;background:var(--panel);backdrop-filter:blur(8px);overflow:hidden}
+  .track-bar{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--term);flex-wrap:wrap}
+  .track-cmd{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.05em;white-space:nowrap}
+  #trackInput{flex:1;min-width:150px;background:var(--bg);border:1px solid var(--line);border-radius:8px;color:var(--text);font-family:var(--mono);font-size:14px;padding:8px 12px;outline:none;letter-spacing:.06em;text-transform:uppercase;transition:border-color .2s}
+  #trackInput::placeholder{text-transform:none;letter-spacing:.02em;color:var(--muted)}
+  #trackInput:focus{border-color:var(--acc-fill)}
+  .track-body{padding:22px 26px 26px;min-height:70px}
+
+  .claim-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:12px}
+  .claim-id{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--acc-ink)}
+  .claim-title{color:var(--muted);font-size:14px;flex:1;min-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .claim-upd{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+  .claim-badge{display:inline-block;font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;border-radius:7px;border:1px solid rgba(var(--acc-rgb),.45);color:var(--acc-ink);background:rgba(var(--acc-rgb),.08);margin-bottom:16px}
+  .claim.done .claim-badge{border-color:var(--pos);color:var(--pos);background:var(--pos-bg)}
+  .pbar{height:10px;border-radius:99px;background:var(--term);border:1px solid var(--line);overflow:hidden}
+  .pbar-fill{height:100%;width:0;background:var(--acc-fill);border-radius:inherit;transition:width .7s cubic-bezier(.2,.7,.2,1)}
+  .claim.done .pbar-fill{background:var(--pos)}
+  .claim-nums{display:flex;justify-content:space-between;align-items:baseline;margin:10px 2px 20px}
+  .claim-pct{font-family:var(--mono);font-size:27px;font-weight:700;color:var(--acc-ink);letter-spacing:-.02em}
+  .claim.done .claim-pct{color:var(--pos)}
+  .claim-eta{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+  .stg-list{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+  .stg{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:12px;padding:6px 12px;border-radius:99px;border:1px solid var(--line);color:var(--muted);transition:.25s}
+  .stg.done{color:var(--pos);border-color:var(--pos)}
+  .stg.cur{color:var(--acc-ink);border-color:rgba(var(--acc-rgb),.55);animation:stgPulse 2.2s ease-in-out infinite}
+  @keyframes stgPulse{50%{box-shadow:0 0 0 4px rgba(var(--acc-rgb),.1)}}
+  .clog{font-family:var(--mono);font-size:12.5px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 16px;max-height:190px;overflow:auto}
+  .clog-line{display:flex;gap:12px;padding:3px 0}
+  .clog-line .lt{color:var(--muted);flex-shrink:0}
+  .claim-hint{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:14px}
+  .claim-empty{font-family:var(--mono);font-size:13px;color:var(--muted)}
+  .nf-link{background:none;border:none;color:var(--acc-ink);font-family:var(--mono);font-size:13px;cursor:pointer;text-decoration:underline;padding:0}
+
+  /* панель оператора */
+  .operator{display:none}
+  .operator.show{display:block}
+  .op-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:start}
+  .op-panel,.op-result{border:1px solid var(--line);border-radius:14px;background:var(--panel);backdrop-filter:blur(8px);padding:28px 30px}
+  .op-id-row{display:flex;gap:10px}
+  .op-id-row input{flex:1}
+  .op-pct-row{display:flex;align-items:center;gap:14px}
+  .op-pct-row input{flex:1}
+  .op-pct-row output{font-family:var(--mono);color:var(--acc-ink);font-size:15px;font-weight:700;min-width:46px;text-align:right}
+  .op-actions{display:flex;gap:10px;margin-top:8px;flex-wrap:wrap}
+  .op-result-title{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+  #opLink{width:100%;background:var(--bg);border:1px dashed var(--line);border-radius:10px;color:var(--acc-ink-soft);font-family:var(--mono);font-size:12.5px;padding:12px 14px;outline:none;word-break:break-all}
+  .op-hint{font-size:13px;color:var(--muted);margin-top:16px}
+
   /* ---------- контакт ---------- */
   .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
   .contact-left{display:flex;flex-direction:column;gap:12px}
@@ -328,12 +377,15 @@
   @media(prefers-reduced-motion:reduce){
     .reveal,.dl{opacity:1;transform:none;transition:none}
     .mq-track,.scroll-hint svg,.caret,.type-cursor{animation:none}
+    .pbar-fill{transition:none}
+    .stg.cur{animation:none}
     html{scroll-behavior:auto}
   }
 
   @media(max-width:1040px){.hdr-r .btn-ghost{display:none}}
+  @media(max-width:1020px){.nav{gap:16px}.nav a{font-size:12px}}
   @media(max-width:900px){
-    .calc-grid,.contact-grid,.cases-grid{grid-template-columns:1fr}
+    .calc-grid,.contact-grid,.cases-grid,.op-grid{grid-template-columns:1fr}
     .svc-inner-pad{padding-left:26px}
     .tl-item{grid-template-columns:1fr;gap:6px}
     .faq-in p{padding-left:22px}
@@ -366,6 +418,7 @@
       <a href="#cases">кейсы</a>
       <a href="#compare">сравнение</a>
       <a href="#faq">faq</a>
+      <a href="#status">статус</a>
       <a href="#contact">контакт</a>
     </nav>
     <div class="hdr-r">
@@ -384,6 +437,7 @@
     <a href="#cases">кейсы</a>
     <a href="#compare">сравнение</a>
     <a href="#faq">faq</a>
+    <a href="#status">статус</a>
     <a href="#contact">контакт</a>
   </div>
 </header>
@@ -661,10 +715,30 @@
     </div>
   </section>
 
+  <!-- СТАТУС ЗАЯВКИ -->
+  <section id="status">
+    <div class="wrap">
+      <div class="sec-tag reveal">[07] — статус</div>
+      <h2 class="reveal">Статус заявки — как в доставке</h2>
+      <p class="sec-sub reveal">Приняли — уточняем — чиним — готово: с процентом и журналом событий. Номер приходит сразу после заявки, здесь всегда видно, что с ней сейчас.</p>
+
+      <div class="track reveal">
+        <div class="track-bar">
+          <span class="dots"><i></i><i></i><i></i></span>
+          <span class="track-cmd">$ track --claim</span>
+          <input id="trackInput" type="text" maxlength="12" placeholder="номер, например IT-4K2F" aria-label="номер заявки">
+          <button class="btn btn-pri btn-sm" id="trackGo" type="button">проверить</button>
+          <button class="btn btn-ghost btn-sm" id="trackDemo" type="button">посмотреть демо</button>
+        </div>
+        <div class="track-body" id="trackOut"></div>
+      </div>
+    </div>
+  </section>
+
   <!-- КОНТАКТ -->
   <section id="contact">
     <div class="wrap">
-      <div class="sec-tag reveal">[07] — контакт</div>
+      <div class="sec-tag reveal">[08] — контакт</div>
       <h2 class="reveal">Свяжитесь с нами</h2>
       <p class="sec-sub reveal">Telegram, WhatsApp или заявка на сайте — отвечаем в течение 15 минут.</p>
 
@@ -710,12 +784,59 @@
       </div>
     </div>
   </section>
+
+  <!-- ПАНЕЛЬ ОПЕРАТОРА: видна только по ссылке #operator из футера -->
+  <section id="operator" class="operator">
+    <div class="wrap">
+      <div class="sec-tag">[internal] — панель оператора</div>
+      <h2>Обновление статусов</h2>
+      <p class="sec-sub">Выберите заявку, стадию и процент — получите ссылку и отправьте её клиенту в чат. Открыв ссылку, он увидит актуальный статус. Сервер не нужен: статус зашит в саму ссылку.</p>
+
+      <div class="op-grid">
+        <div class="op-panel">
+          <div class="field"><label for="opId">номер заявки</label>
+            <div class="op-id-row">
+              <input type="text" id="opId" maxlength="12" placeholder="IT-4K2F">
+              <button class="btn btn-ghost btn-sm" id="opNewId" type="button">новый №</button>
+            </div></div>
+          <div class="field"><label for="opTitle">о чём заявка (видит клиент)</label>
+            <input type="text" id="opTitle" maxlength="80" placeholder="не запускается 1С у бухгалтера"></div>
+          <div class="field"><label for="opStage">стадия</label>
+            <select id="opStage">
+              <option value="0">принята</option>
+              <option value="1">уточняем детали</option>
+              <option value="2">диагностика</option>
+              <option value="3" selected>в работе</option>
+              <option value="4">готово</option>
+            </select></div>
+          <div class="field"><label for="opPct">процент готовности</label>
+            <div class="op-pct-row"><input type="range" id="opPct" min="0" max="100" value="60"><output id="opPctOut">60%</output></div></div>
+          <div class="field"><label for="opNote">комментарий (попадёт в лог клиента)</label>
+            <input type="text" id="opNote" maxlength="120" placeholder="переносим профиль почты"></div>
+          <div class="field"><label for="opEta">осталось минут (необязательно)</label>
+            <input type="text" id="opEta" inputmode="numeric" placeholder="15"></div>
+          <div class="op-actions">
+            <button class="btn btn-pri" id="opGen" type="button">сгенерировать ссылку <i data-lucide="link"></i></button>
+          </div>
+        </div>
+
+        <div class="op-result">
+          <div class="op-result-title">// ссылка для клиента</div>
+          <input type="text" id="opLink" readonly placeholder="появится здесь после генерации">
+          <div class="op-actions">
+            <button class="btn btn-ghost btn-sm" id="opCopy" type="button"><i data-lucide="copy"></i> скопировать</button>
+          </div>
+          <p class="op-hint">Отправьте ссылку в Telegram или WhatsApp — клиент откроет её на любом устройстве и увидит прогресс. Если клиент потом сменит устройство, просто перешлите свежую ссылку: в ней живёт весь статус.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer>
   <div class="wrap foot-in">
     <span class="foot-brand">ITSupport</span>
-    <span><a href="https://t.me/your_telegram" target="_blank" rel="noopener noreferrer">telegram</a> · <a href="https://wa.me/your_number" target="_blank" rel="noopener noreferrer">whatsapp</a></span>
+    <span><a href="#status">статус заявки</a> · <a href="#operator">для команды</a> · <a href="https://t.me/your_telegram" target="_blank" rel="noopener noreferrer">telegram</a> · <a href="https://wa.me/your_number" target="_blank" rel="noopener noreferrer">whatsapp</a></span>
     <span>© 2025 · ит-аутсорсинг по всей россии · первый аудит бесплатно</span>
   </div>
 </footer>
@@ -1128,17 +1249,328 @@ document.querySelectorAll('.svc-head,.faq-q').forEach(head => {
     });
     if (!ok) return;
 
-    const text = 'Заявка с сайта ITSupport\nИмя: ' + $('fName').value.trim() +
+    /* номер заявки создан в модуле 9 (перехват срабатывает раньше) — вшиваем его в текст для специалиста */
+    const claimId = form.dataset.claimId ? '\nНомер заявки: ' + form.dataset.claimId : '';
+    const text = 'Заявка с сайта ITSupport' + claimId +
+                 '\nИмя: ' + $('fName').value.trim() +
                  '\nКонтакт: ' + $('fContact').value.trim() +
                  '\nЗадача: ' + $('fMsg').value.trim();
     copyText(text).then(okc => {
       openExternal(TG_URL);
       toast(okc ? 'заявка скопирована — вставьте текст в открывшийся чат' : 'не удалось скопировать — напишите нам напрямую в telegram');
     });
+    delete form.dataset.claimId;
     form.reset();
   });
   form.querySelectorAll('input,textarea').forEach(i =>
     i.addEventListener('input', () => i.closest('.field')?.classList.remove('err')));
+})();
+
+/* ===== 9. статус заявок: трекинг, демо, панель оператора ===== */
+(() => {
+  const $i = id => document.getElementById(id);
+  const out = $i('trackOut'), inp = $i('trackInput');
+  if (!out || !inp) return;
+
+  const LS_KEY = 'its-claims-v1';
+  const STAGES = [
+    { label:'принята',     line:'заявка принята · номер присвоен' },
+    { label:'уточняем',    line:'уточняем детали у пользователя' },
+    { label:'диагностика', line:'подключились удалённо · смотрим, что происходит' },
+    { label:'в работе',    line:'начали работу' },
+    { label:'готово',      line:'готово · проверили и отчитались' }
+  ];
+  const DEF_PCT = [0, 10, 30, 60, 100];
+  const DEMO_LEN = 100; /* демо доходит до 100% за ~100 секунд */
+
+  const el = (tag, cls, text) => {
+    const n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  };
+  const norm = s => String(s || '').trim().toUpperCase();
+  const hhmm = t => { const d = new Date(t); return [d.getHours(), d.getMinutes()].map(v => String(v).padStart(2, '0')).join(':'); };
+  const readLS = () => { try { return JSON.parse(localStorage.getItem(LS_KEY)) || {}; } catch (e) { return {}; } };
+  const writeLS = o => { try { localStorage.setItem(LS_KEY, JSON.stringify(o)); } catch (e) {} };
+  const newId = () => 'IT-' + Math.random().toString(36).slice(2, 6).toUpperCase();
+  const goal = n => { try { if (typeof ym === 'function') ym(105215813, 'reachGoal', n); } catch (e) {} };
+  const chipState = (i, stage) => (i < stage || (i === stage && stage === 4)) ? 'done' : (i === stage ? 'cur' : '');
+  const chipGlyph = st => st === 'done' ? '✓ ' : st === 'cur' ? '● ' : '○ ';
+
+  /* --- записи --- */
+  function createClaim(id, title){
+    const now = Date.now();
+    return { id, title: title || 'заявка', created: now, updated: now, stage: 0, pct: 0, eta: null, events: [{ t: now, text: 'заявка принята' }] };
+  }
+  function addEvent(c, text){ c.events.push({ t: Date.now(), text }); c.updated = Date.now(); }
+  function applyUpdate(c, u){
+    if (u.title) c.title = u.title;
+    const st = Math.max(0, Math.min(4, u.stage | 0));
+    for (let i = c.stage + 1; i <= st; i++) addEvent(c, STAGES[i].line);
+    if (st < c.stage) addEvent(c, 'стадия скорректирована: ' + STAGES[st].label);
+    c.stage = st;
+    c.pct = Math.max(0, Math.min(100, Math.round(u.pct)));
+    c.eta = (u.eta && u.eta > 0) ? u.eta : null;
+    if (u.note) addEvent(c, u.note);
+    c.updated = Date.now();
+  }
+
+  /* --- отрисовка --- */
+  let view = null, demo = null, demoTimer = null;
+  function stopDemo(){ if (demoTimer) { clearInterval(demoTimer); demoTimer = null; } }
+
+  function etaText(c){
+    if (c.stage === 4) return 'готово';
+    if (c.demo && c.etaLeft != null)
+      return c.etaLeft >= 60 ? 'осталось ≈ ' + Math.ceil(c.etaLeft / 60) + ' мин' : 'осталось ≈ ' + Math.max(1, Math.ceil(c.etaLeft)) + ' сек';
+    if (c.eta && c.eta > 0) return 'осталось ≈ ' + (c.eta >= 60 ? Math.round(c.eta / 60) + ' ч' : c.eta + ' мин');
+    return 'срок уточняем';
+  }
+
+  function render(c){
+    stopDemo(); view = null;
+    out.textContent = '';
+    const card = el('div', 'claim' + (c.stage === 4 ? ' done' : ''));
+    const head = el('div', 'claim-head');
+    const upd = el('span', 'claim-upd', 'обновлено ' + hhmm(c.updated));
+    head.append(el('span', 'claim-id', c.id), el('span', 'claim-title', '«' + c.title + '»'), upd);
+    card.append(head);
+    const badge = el('span', 'claim-badge', STAGES[c.stage].label);
+    card.append(badge);
+    const fill = el('div', 'pbar-fill');
+    const bar = el('div', 'pbar'); bar.append(fill); card.append(bar);
+    const pctEl = el('span', 'claim-pct', c.pct + '%');
+    const etaEl = el('span', 'claim-eta', etaText(c));
+    const nums = el('div', 'claim-nums'); nums.append(pctEl, etaEl); card.append(nums);
+    const chips = el('div', 'stg-list');
+    const chipEls = STAGES.map((s, i) => {
+      const st = chipState(i, c.stage);
+      const ch = el('span', 'stg' + (st ? ' ' + st : ''), chipGlyph(st) + s.label);
+      chips.append(ch); return ch;
+    });
+    card.append(chips);
+    const log = el('div', 'clog');
+    c.events.forEach(ev => {
+      const ln = el('div', 'clog-line');
+      ln.append(el('span', 'lt', hhmm(ev.t)), el('span', null, ev.text));
+      log.append(ln);
+    });
+    card.append(log);
+    card.append(el('div', 'claim-hint', c.demo
+      ? 'демо-заявка: процент растёт сам, чтобы показать механику трекинга'
+      : 'статус обновляет специалист — свежая ссылка приходит в чат'));
+    out.append(card);
+    requestAnimationFrame(() => { fill.style.width = c.pct + '%'; });
+    view = { c, card, badge, upd, fill, pctEl, etaEl, chipEls, log, n: c.events.length };
+    log.scrollTop = log.scrollHeight;
+  }
+
+  /* --- демо: «эффект доставки» --- */
+  function startDemo(){
+    goal('status_demo');
+    demo = { id:'DEMO', title:'не запускается 1С у бухгалтера', created: Date.now(), updated: Date.now(), stage: 0, pct: 0, eta: null, etaLeft: DEMO_LEN, events: [], demo: true };
+    addEvent(demo, 'заявка принята');
+    render(demo);
+    demoTimer = setInterval(demoTick, 1000);
+  }
+  function demoTick(){
+    if (!demo || !view || view.c !== demo) { stopDemo(); return; }
+    const t = (Date.now() - demo.created) / 1000;
+    const s = t >= DEMO_LEN ? { stage: 4, pct: 100 }
+      : t >= 26 ? { stage: 3, pct: 35 + Math.round((t - 26) / (DEMO_LEN - 26) * 62) }
+      : t >= 12 ? { stage: 2, pct: 15 + Math.round((t - 12) / 14 * 19) }
+      : t >= 4  ? { stage: 1, pct: 5 + Math.round((t - 4) / 8 * 9) }
+      : { stage: 0, pct: Math.min(3, Math.floor(t)) };
+    if (s.stage !== demo.stage) {
+      if (s.stage === 1) addEvent(demo, 'уточнили детали у бухгалтера');
+      else if (s.stage === 2) addEvent(demo, 'подключились удалённо · смотрим логи');
+      else if (s.stage === 3) addEvent(demo, 'нашли причину: битый профиль после обновления');
+      else if (s.stage === 4) addEvent(demo, 'профиль пересобран · 1с запускается, отчитались');
+    }
+    if (!demo.m1 && s.pct >= 55) { demo.m1 = 1; addEvent(demo, 'пересобираем профиль пользователя'); }
+    if (!demo.m2 && s.pct >= 82) { demo.m2 = 1; addEvent(demo, 'проверяем на тестовом входе'); }
+    demo.stage = s.stage; demo.pct = s.pct; demo.etaLeft = Math.max(0, DEMO_LEN - t);
+
+    view.fill.style.width = demo.pct + '%';
+    view.pctEl.textContent = demo.pct + '%';
+    view.etaEl.textContent = etaText(demo);
+    view.upd.textContent = 'обновлено сейчас';
+    view.badge.textContent = STAGES[demo.stage].label;
+    view.chipEls.forEach((ch, i) => {
+      const st = chipState(i, demo.stage);
+      ch.className = 'stg' + (st ? ' ' + st : '');
+      ch.textContent = chipGlyph(st) + STAGES[i].label;
+    });
+    while (view.n < demo.events.length) {
+      const ev = demo.events[view.n++];
+      const ln = el('div', 'clog-line');
+      ln.append(el('span', 'lt', hhmm(ev.t)), el('span', null, ev.text));
+      view.log.append(ln);
+      view.log.scrollTop = view.log.scrollHeight;
+    }
+    if (demo.stage === 4) {
+      view.card.classList.add('done');
+      view.badge.textContent = 'готово';
+      stopDemo();
+      celebrate();
+    }
+  }
+
+  /* финал: волна по сети на фоне */
+  function celebrate(){
+    setTimeout(() => {
+      try { document.body.dispatchEvent(new MouseEvent('click', { clientX: Math.round(innerWidth / 2), clientY: Math.round(innerHeight * 0.4), bubbles: true })); } catch (e) {}
+    }, 700);
+  }
+
+  /* --- поиск заявки --- */
+  function check(){
+    const id = norm(inp.value);
+    out.textContent = '';
+    if (!id) { out.append(el('div', 'claim-empty', 'введите номер заявки — например, IT-4K2F — или нажмите «посмотреть демо»')); return; }
+    if (id === 'DEMO') { startDemo(); return; }
+    const c = readLS()[id];
+    if (!c) {
+      goal('status_miss');
+      const nf = el('div', 'claim-empty');
+      nf.append('заявка ' + id + ' в этом браузере не найдена. ');
+      const b = el('button', 'nf-link', 'открыть демо'); b.type = 'button';
+      b.addEventListener('click', startDemo);
+      nf.append(b);
+      out.append(nf, el('div', 'claim-hint', 'статусы живут в ссылках из чата — откройте свежую ссылку от специалиста или проверьте номер'));
+      return;
+    }
+    goal('status_check');
+    render(c);
+  }
+  $i('trackGo').addEventListener('click', check);
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter') check(); });
+  $i('trackDemo').addEventListener('click', startDemo);
+
+  /* --- обработка ссылок вида #claim=IT-XXXX&s=3&p=65&... --- */
+  function handleHash(){
+    const h = location.hash || '';
+    if (h === '#operator') {
+      const s = $i('operator');
+      if (s) { s.classList.add('show'); s.scrollIntoView({ behavior: 'smooth' }); }
+      return;
+    }
+    if (h.indexOf('#claim=') !== 0) return;
+    let q; try { q = new URLSearchParams(h.slice(1)); } catch (e) { return; }
+    const id = norm(q.get('claim'));
+    if (!id) return;
+    const store = readLS();
+    const fresh = !store[id];
+    const c = fresh ? createClaim(id, q.get('t')) : store[id];
+    const u = {
+      stage: parseInt(q.get('s'), 10) || 0,
+      pct: parseFloat(q.get('p')) || 0,
+      note: q.get('n') || null,
+      title: fresh ? c.title : (q.get('t') || c.title)
+    };
+    const etaRaw = parseInt(q.get('eta'), 10);
+    if (etaRaw > 0) u.eta = etaRaw;
+    const st = Math.max(0, Math.min(4, u.stage | 0));
+    const pc = Math.max(0, Math.min(100, Math.round(u.pct)));
+    if (fresh || c.stage !== st || c.pct !== pc || u.note) {
+      applyUpdate(c, u);
+      store[id] = c; writeLS(store);
+    }
+    inp.value = id;
+    render(c);
+    try { history.replaceState(null, '', location.pathname + location.search + '#status'); } catch (e) {}
+    const sec = $i('status');
+    if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+    goal('status_open');
+    if (c.stage === 4) celebrate();
+  }
+  addEventListener('hashchange', handleHash);
+  handleHash();
+
+  /* --- панель оператора --- */
+  const o = {};
+  ['opId','opTitle','opStage','opPct','opPctOut','opNote','opEta','opGen','opCopy','opLink','opNewId'].forEach(id => o[id] = $i(id));
+  if (o.opGen) {
+    o.opStage.addEventListener('change', () => { o.opPct.value = DEF_PCT[+o.opStage.value]; o.opPctOut.textContent = o.opPct.value + '%'; });
+    o.opPct.addEventListener('input', () => o.opPctOut.textContent = o.opPct.value + '%');
+    o.opNewId.addEventListener('click', () => { o.opId.value = newId(); o.opTitle.focus(); });
+    o.opId.addEventListener('change', () => {
+      const c = readLS()[norm(o.opId.value)];
+      if (c) {
+        o.opTitle.value = c.title; o.opStage.value = c.stage;
+        o.opPct.value = c.pct; o.opPctOut.textContent = c.pct + '%';
+      }
+    });
+    o.opGen.addEventListener('click', () => {
+      const id = norm(o.opId.value);
+      if (!id) { o.opId.focus(); toast('введите номер заявки — или нажмите «новый №»'); return; }
+      const stage = Math.max(0, Math.min(4, +o.opStage.value));
+      const pct = stage === 4 ? 100 : Math.max(0, Math.min(100, +o.opPct.value));
+      const title = o.opTitle.value.trim() || 'заявка';
+      const note = o.opNote.value.trim();
+      const eta = parseInt(o.opEta.value, 10) || 0;
+      /* локальная копия у оператора */
+      const store = readLS();
+      const c = store[id] || createClaim(id, title);
+      applyUpdate(c, { stage, pct, note: note || null, title, eta });
+      store[id] = c; writeLS(store);
+      /* ссылка для клиента */
+      let url = location.href.split('#')[0] + '#claim=' + encodeURIComponent(id) + '&s=' + stage + '&p=' + pct + '&t=' + encodeURIComponent(title);
+      if (note) url += '&n=' + encodeURIComponent(note);
+      if (eta > 0 && stage !== 4) url += '&eta=' + eta;
+      o.opLink.value = url;
+      copyText(url).then(ok => toast(ok ? 'ссылка скопирована — отправьте её клиенту в чат' : 'ссылка сгенерирована — скопируйте её вручную'));
+      goal('op_link');
+    });
+    o.opCopy.addEventListener('click', () => {
+      if (!o.opLink.value) return;
+      copyText(o.opLink.value).then(ok => toast(ok ? 'ссылка скопирована' : 'не удалось скопировать'));
+    });
+  }
+
+  /* --- заявка создаётся автоматически при отправке формы ---
+     слушатель в фазе перехвата: срабатывает раньше основного обработчика,
+     пока поля ещё не очищены reset() */
+  document.addEventListener('submit', e => {
+    if (!e.target || e.target.id !== 'orderForm') return;
+    const hp = $i('fCompany');
+    if (hp && hp.value) return; /* бот — заявку не создаём */
+    const nm = $i('fName'), ct = $i('fContact'), msg = $i('fMsg');
+    if (!nm || !ct || !msg) return;
+    const v = x => (x.value || '').trim();
+    if (v(nm).length < 2 || v(ct).length < 5 || v(msg).length < 10) return; /* ошибки покажет основной обработчик */
+    const id = newId();
+    const store = readLS();
+    store[id] = createClaim(id, v(msg).slice(0, 80));
+    writeLS(store);
+    e.target.dataset.claimId = id; /* номер попадёт в текст заявки для специалиста */
+    inp.value = id;
+    render(store[id]);
+    toast('заявке присвоен номер ' + id + ' — статус будет в разделе «статус»');
+    goal('claim_created');
+  }, true);
+
+  /* --- начальное состояние: подставить последнюю заявку --- */
+  (function init(){
+    const list = Object.values(readLS()).filter(c => c && c.id).sort((a, b) => b.created - a.created);
+    if (list[0] && !inp.value) inp.value = list[0].id;
+    else if (!list[0] && !out.querySelector('.claim'))
+      out.append(el('div', 'claim-empty', 'здесь появится статус вашей заявки — номер придёт сразу после отправки формы'));
+    const tr = document.querySelector('.track');
+    if (tr) {
+      const io = new IntersectionObserver(es => {
+        if (es.some(en => en.isIntersecting)) {
+          io.disconnect();
+          if (!out.querySelector('.claim')) {
+            const cur = Object.values(readLS()).sort((a, b) => b.created - a.created)[0];
+            if (cur) render(cur);
+          }
+        }
+      }, { threshold: 0.2 });
+      io.observe(tr);
+    }
+  })();
 })();
 
 if (window.lucide) lucide.createIcons();
