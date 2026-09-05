@@ -2,7 +2,9 @@
 <html lang="ru" data-theme="dark">
 <head>
 <!-- CSP: скрипты/стили только с разрешённых доменов; manifest-src data: — для PWA-манифеста,
-     который собирается на лету в JS. Если вебвизор Метрики начнёт чудить — ослабьте frame-src. -->
+     который собирается на лету в JS. Если вебвизор Метрики начнёт чудить — ослабьте frame-src.
+     Чтобы стать независимым от unpkg: скачайте lucide.min.js, положите рядом с index.html,
+     замените src ниже на "lucide.min.js" и уберите " https://unpkg.com" из script-src. -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://mc.yandex.ru; manifest-src 'self' data:; connect-src 'self' https://mc.yandex.ru; frame-src https://mc.yandex.ru; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -305,6 +307,8 @@
   .kb-steps{margin:0;padding-left:22px;color:var(--muted);font-size:14.5px;max-width:620px}
   .kb-steps li{padding:3px 0}
   .kb-empty{display:none;font-family:var(--mono);font-size:13px;color:var(--muted);border:1px dashed var(--line);border-radius:10px;padding:16px 20px}
+  /* у kb-карточек нет колонки «цена» — своя сетка, перекрывает и мобильные правила услуг */
+  .kb .svc-head{grid-template-columns:64px 1fr 24px}
 
   /* ==================== статус заявки (трекинг) ==================== */
   .track{border:1px solid var(--line);border-radius:14px;background:var(--panel);backdrop-filter:blur(8px);overflow:hidden}
@@ -490,7 +494,7 @@
         <!-- split-кнопка: выбрать мессенджер.
              ЗАМЕНИТЕ your_telegram, your_number и ВАШ_ПРОФИЛЬ на реальные контакты -->
         <div class="m-split" id="mSplit">
-          <button class="btn btn-pri" id="mSplitBtn" type="button" aria-expanded="false" aria-haspopup="menu">
+          <button class="btn btn-pri" id="mSplitBtn" type="button" aria-expanded="false" aria-haspopup="menu" aria-controls="mSplitMenu">
             написать в мессенджер <i data-lucide="chevron-down" class="m-caret"></i>
           </button>
           <div class="m-split-menu" id="mSplitMenu" role="menu">
@@ -1668,7 +1672,8 @@ document.querySelectorAll('.svc-head,.faq-q').forEach(head => {
   inp.addEventListener('keydown', e => { if (e.key === 'Enter') check(); });
   $i('trackDemo').addEventListener('click', startDemo);
 
-  /* --- обработка ссылок вида #claim=IT-XXXX&s=3&p=65&... --- */
+  /* --- обработка ссылок вида #claim=IT-XXXX&s=3&p=65&... ---
+     параметры t и n обрезаем до 160 символов — от гигантских самодельных ссылок */
   function handleHash(){
     const h = location.hash || '';
     if (h === '#operator') { openGate(); return; }
@@ -1676,14 +1681,15 @@ document.querySelectorAll('.svc-head,.faq-q').forEach(head => {
     let q; try { q = new URLSearchParams(h.slice(1)); } catch (e) { return; }
     const id = norm(q.get('claim'));
     if (!id) return;
+    const cut = (v, n) => (v && v.length > n) ? v.slice(0, n) : v;
     const store = readLS();
     const fresh = !store[id];
-    const c = fresh ? createClaim(id, q.get('t')) : store[id];
+    const c = fresh ? createClaim(id, cut(q.get('t'), 160)) : store[id];
     const u = {
       stage: parseInt(q.get('s'), 10) || 0,
       pct: parseFloat(q.get('p')) || 0,
-      note: q.get('n') || null,
-      title: fresh ? c.title : (q.get('t') || c.title)
+      note: cut(q.get('n'), 160) || null,
+      title: fresh ? c.title : (cut(q.get('t'), 160) || c.title)
     };
     const etaRaw = parseInt(q.get('eta'), 10);
     if (etaRaw > 0) u.eta = etaRaw;
@@ -1736,6 +1742,10 @@ document.querySelectorAll('.svc-head,.faq-q').forEach(head => {
   }
   $i('opLogin').addEventListener('click', tryPass);
   $i('opPass').addEventListener('keydown', e => { if (e.key === 'Enter') tryPass(); });
+
+  /* повторный клик по «для команды», когда #operator уже открыт — hashchange не сработает */
+  document.querySelectorAll('a[href="#operator"]').forEach(a =>
+    a.addEventListener('click', () => setTimeout(openGate, 0)));
 
   handleHash();
 
@@ -1885,6 +1895,8 @@ document.querySelectorAll('.svc-head,.faq-q').forEach(head => {
   let buf = '';
   addEventListener('keydown', e => {
     if (e.key.length !== 1 || e.ctrlKey || e.metaKey || e.altKey) return;
+    const a = document.activeElement; /* не мешаем печатать в полях формы и поиска */
+    if (a && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)) return;
     buf = (buf + e.key.toLowerCase()).slice(-8);
     if (buf.includes('sudo')){ buf = ''; start(); toast('sudo: права суперпользователя получены ;-)'); }
   });
