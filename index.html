@@ -142,6 +142,24 @@
   .type-line .fix{color:var(--text)}
   .type-cursor{display:inline-block;width:8px;height:17px;background:var(--acc-fill);vertical-align:-2px;margin-left:3px;animation:blink 1s steps(2) infinite}
   .hero-btns{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap}
+
+  /* ---------- split-кнопка «написать в мессенджер» ---------- */
+  .m-split{position:relative;display:inline-flex}
+  .m-caret{transition:transform .3s}
+  .m-split.open .m-caret{transform:rotate(180deg)}
+  .m-split.open .btn-pri{transform:none}
+  .m-split-menu{position:absolute;top:calc(100% + 10px);left:0;min-width:292px;max-width:calc(100vw - 48px);display:flex;flex-direction:column;gap:6px;background:var(--glass);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:14px;padding:8px;box-shadow:0 22px 48px rgba(0,0,0,.4);opacity:0;transform:translateY(10px) scale(.98);pointer-events:none;transition:opacity .25s,transform .25s cubic-bezier(.2,.7,.2,1);z-index:30}
+  .m-split.open .m-split-menu{opacity:1;transform:none;pointer-events:auto}
+  .m-opt{display:grid;grid-template-columns:24px 1fr 18px;align-items:center;gap:12px;padding:11px 13px;border-radius:10px;text-decoration:none;color:var(--text);border:1px solid transparent;transition:border-color .2s,background .2s,transform .2s}
+  .m-opt:hover{transform:translateX(4px)}
+  .m-opt.tg:hover{border-color:#2aabee;background:rgba(42,171,238,.09)}
+  .m-opt.wa:hover{border-color:#25d366;background:rgba(37,211,102,.09)}
+  .m-opt.max:hover{border-color:#7c5cff;background:rgba(124,92,255,.09)}
+  .m-opt-txt{font-family:var(--mono);font-size:14px;font-weight:500}
+  .m-opt-sub{display:block;font-family:var(--sans);font-size:11.5px;color:var(--muted);font-weight:400}
+  .m-opt .ic svg{width:19px;height:19px}
+  .m-opt .mb-arrow svg{width:15px;height:15px;color:var(--muted)}
+
   .hero-meta{margin-top:auto;padding:22px 0 26px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:12.5px;color:var(--muted)}
   .hero-meta .live{display:flex;align-items:center;gap:8px}
   .hero-meta svg{width:14px;height:14px;color:var(--acc-ink)}
@@ -469,8 +487,30 @@
       <h1>Ваш бизнес работает без сбоев — <span class="acc">мы решаем всё остальное</span></h1>
       <div class="type-line"><span class="fix">делаем:&nbsp;</span><span id="typed"></span><span class="type-cursor"></span></div>
       <div class="hero-btns">
-        <!-- ЗАМЕНИТЕ your_telegram на ваш ник в Telegram -->
-        <a href="https://t.me/your_telegram" target="_blank" rel="noopener noreferrer" class="btn btn-pri">написать в telegram <i data-lucide="send"></i></a>
+        <!-- split-кнопка: выбрать мессенджер.
+             ЗАМЕНИТЕ your_telegram, your_number и ВАШ_ПРОФИЛЬ на реальные контакты -->
+        <div class="m-split" id="mSplit">
+          <button class="btn btn-pri" id="mSplitBtn" type="button" aria-expanded="false" aria-haspopup="menu">
+            написать в мессенджер <i data-lucide="chevron-down" class="m-caret"></i>
+          </button>
+          <div class="m-split-menu" id="mSplitMenu" role="menu">
+            <a class="m-opt tg" role="menuitem" href="https://t.me/your_telegram" target="_blank" rel="noopener noreferrer">
+              <span class="ic ic-tg"><i data-lucide="send"></i></span>
+              <span class="m-opt-txt">telegram<span class="m-opt-sub">быстрее всего · ответ ~15 минут</span></span>
+              <span class="ic mb-arrow"><i data-lucide="arrow-up-right"></i></span>
+            </a>
+            <a class="m-opt wa" role="menuitem" href="https://wa.me/your_number" target="_blank" rel="noopener noreferrer">
+              <span class="ic ic-wa"><i data-lucide="message-circle"></i></span>
+              <span class="m-opt-txt">whatsapp<span class="m-opt-sub">если телеграм неудобен</span></span>
+              <span class="ic mb-arrow"><i data-lucide="arrow-up-right"></i></span>
+            </a>
+            <a class="m-opt max" role="menuitem" href="https://max.ru/ВАШ_ПРОФИЛЬ" target="_blank" rel="noopener noreferrer">
+              <span class="ic ic-max"><i data-lucide="message-square"></i></span>
+              <span class="m-opt-txt">max<span class="m-opt-sub">есть и в max — пишите</span></span>
+              <span class="ic mb-arrow"><i data-lucide="arrow-up-right"></i></span>
+            </a>
+          </div>
+        </div>
         <a href="#calc" class="btn btn-ghost">рассчитать стоимость <i data-lucide="arrow-right"></i></a>
       </div>
       <div class="hero-meta">
@@ -1881,6 +1921,32 @@ document.querySelectorAll('.svc-head,.faq-q').forEach(head => {
     const b = $('themeToggle');
     if (b) b.addEventListener('click', () => setTimeout(mk, 60));
   } catch (e) {}
+})();
+
+/* ===== 13. split-кнопка «написать в мессенджер» ===== */
+(() => {
+  const split = document.querySelector('.m-split');
+  if (!split) return;
+  const btn = split.querySelector('.m-split > .btn');
+  const goal = n => { try { if (typeof ym === 'function') ym(105215813, 'reachGoal', n); } catch (e) {} };
+  const close = () => { split.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); };
+
+  btn.addEventListener('click', e => {
+    e.preventDefault();
+    const open = split.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+    if (open) goal('msplit_open');
+  });
+  split.querySelectorAll('.m-opt').forEach(a => a.addEventListener('click', () => {
+    goal('messenger_pick');
+    close();
+  }));
+  document.addEventListener('click', e => { if (!split.contains(e.target)) close(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+  let sy = scrollY;
+  addEventListener('scroll', () => {
+    if (Math.abs(scrollY - sy) > 8){ sy = scrollY; close(); }
+  }, { passive: true });
 })();
 
 if (window.lucide) lucide.createIcons();
