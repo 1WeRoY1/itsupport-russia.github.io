@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang="ru" data-theme="dark">
 <head>
-<!-- CSP: скрипты/стили только с разрешённых доменов; manifest-src data: — для PWA-манифеста,
-     который собирается на лету в JS. Если вебвизор Метрики начнёт чудить — ослабьте frame-src.
+<!-- CSP: скрипты/стили только с разрешённых доменов; manifest-src data: — для PWA-манифеста.
      Чтобы стать независимым от unpkg: скачайте lucide.min.js, положите рядом с index.html,
      замените src ниже на "lucide.min.js" и уберите " https://unpkg.com" из script-src. -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://mc.yandex.ru; manifest-src 'self' data:; connect-src 'self' https://mc.yandex.ru; frame-src https://mc.yandex.ru; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="description" content="ИТ-поддержка малого и среднего бизнеса: сопровождение рабочих мест, серверы, резервное копирование. Фиксированная цена, ответ за 15 минут, по всей России.">
-<meta property="og:title" content="ITSupport — ИТ-аутсорсинг для бизнеса">
+<meta name="description" content="ИТ-поддержка бизнеса, школ и госучреждений: сопровождение рабочих мест, серверы, резервное копирование. Фиксированная цена, ответ за 15 минут, по всей России.">
+<meta property="og:title" content="ITSupport — ИТ-аутсорсинг для бизнеса, школ и госучреждений">
 <meta property="og:description" content="Фиксированная цена, ответ за 15 минут, работаем по всей России.">
 <meta property="og:type" content="website">
-<title>ITSupport — ИТ-аутсорсинг и поддержка бизнеса по всей России</title>
+<title>ITSupport — ИТ-аутсорсинг и поддержка бизнеса, школ и госучреждений</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -157,14 +156,18 @@
   .m-opt.tg:hover{border-color:#2aabee;background:rgba(42,171,238,.09)}
   .m-opt.wa:hover{border-color:#25d366;background:rgba(37,211,102,.09)}
   .m-opt.max:hover{border-color:#7c5cff;background:rgba(124,92,255,.09)}
+  .m-opt.call:hover{border-color:rgba(var(--acc-rgb),.6);background:rgba(var(--acc-rgb),.08)}
   .m-opt-txt{font-family:var(--mono);font-size:14px;font-weight:500}
   .m-opt-sub{display:block;font-family:var(--sans);font-size:11.5px;color:var(--muted);font-weight:400}
   .m-opt .ic svg{width:19px;height:19px}
   .m-opt .mb-arrow svg{width:15px;height:15px;color:var(--muted)}
+  .ic-call svg{color:var(--acc-ink)}
 
   .hero-meta{margin-top:auto;padding:22px 0 26px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:12.5px;color:var(--muted)}
   .hero-meta .live{display:flex;align-items:center;gap:8px}
   .hero-meta svg{width:14px;height:14px;color:var(--acc-ink)}
+  .hero-meta a{color:var(--acc-ink);text-decoration:none}
+  .hero-meta a:hover{color:var(--acc-ink-soft)}
   .scroll-hint{display:flex;align-items:center;gap:8px}
   .scroll-hint svg{animation:bob 1.6s ease-in-out infinite}
   @keyframes bob{50%{transform:translateY(4px)}}
@@ -373,11 +376,13 @@
   .msg-btn.tg:hover{border-color:#2aabee}
   .msg-btn.wa:hover{border-color:#25d366}
   .msg-btn.max:hover{border-color:#7c5cff}
+  .msg-btn.call:hover{border-color:rgba(var(--acc-rgb),.55)}
   .ic{display:flex}
   .ic svg{width:20px;height:20px}
   .ic-tg svg{color:#2aabee}
   .ic-wa svg{color:#25d366}
   .ic-max svg{color:#7c5cff}
+  .ic-call svg{color:var(--acc-ink)}
   .mb-arrow svg{color:var(--muted);width:16px;height:16px}
   .mb-txt{font-family:var(--mono);font-size:15px;font-weight:500}
   .mb-sub{display:block;font-size:12px;color:var(--muted);font-weight:400;margin-top:2px}
@@ -467,6 +472,7 @@
         <span class="ico-sun"><i data-lucide="sun"></i></span>
       </button>
       <a href="#contact" class="btn btn-ghost btn-sm">обсудить задачу</a>
+      <a href="tel:+79201703707" class="btn btn-pri btn-sm" style="margin-right:4px"><i data-lucide="phone"></i> срочно</a>
       <button class="burger" id="burger" aria-label="меню"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -487,30 +493,36 @@
   <!-- HERO -->
   <section class="hero">
     <div class="wrap">
-      <div class="hero-tag">// ит-аутсорсинг · малый и средний бизнес · вся россия · онлайн</div>
+      <div class="hero-tag">// ит-аутсорсинг · бизнес, школы и госучреждения · вся россия · онлайн</div>
       <h1>Ваш бизнес работает без сбоев — <span class="acc">мы решаем всё остальное</span></h1>
       <div class="type-line"><span class="fix">делаем:&nbsp;</span><span id="typed"></span><span class="type-cursor"></span></div>
       <div class="hero-btns">
-        <!-- split-кнопка: выбрать мессенджер.
-             ЗАМЕНИТЕ your_telegram, your_number и ВАШ_ПРОФИЛЬ на реальные контакты -->
+        <!-- телефон +7 920 170-37-07: telegram и whatsapp открывают чат по номеру;
+             Max ждёт ссылку на профиль — см. комментарий в меню -->
         <div class="m-split" id="mSplit">
           <button class="btn btn-pri" id="mSplitBtn" type="button" aria-expanded="false" aria-haspopup="menu" aria-controls="mSplitMenu">
             написать в мессенджер <i data-lucide="chevron-down" class="m-caret"></i>
           </button>
           <div class="m-split-menu" id="mSplitMenu" role="menu">
-            <a class="m-opt tg" role="menuitem" href="https://t.me/your_telegram" target="_blank" rel="noopener noreferrer">
+            <a class="m-opt tg" role="menuitem" href="https://t.me/+79201703707" target="_blank" rel="noopener noreferrer">
               <span class="ic ic-tg"><i data-lucide="send"></i></span>
-              <span class="m-opt-txt">telegram<span class="m-opt-sub">быстрее всего · ответ ~15 минут</span></span>
+              <span class="m-opt-txt">telegram<span class="m-opt-sub">по номеру телефона · ответ ~15 минут</span></span>
               <span class="ic mb-arrow"><i data-lucide="arrow-up-right"></i></span>
             </a>
-            <a class="m-opt wa" role="menuitem" href="https://wa.me/your_number" target="_blank" rel="noopener noreferrer">
+            <a class="m-opt wa" role="menuitem" href="https://wa.me/79201703707" target="_blank" rel="noopener noreferrer">
               <span class="ic ic-wa"><i data-lucide="message-circle"></i></span>
-              <span class="m-opt-txt">whatsapp<span class="m-opt-sub">если телеграм неудобен</span></span>
+              <span class="m-opt-txt">whatsapp<span class="m-opt-sub">по номеру +7 920 170-37-07</span></span>
               <span class="ic mb-arrow"><i data-lucide="arrow-up-right"></i></span>
             </a>
+            <!-- ЗАМЕНИТЕ ВАШ_ПРОФИЛЬ на ссылку вашего профиля в Max -->
             <a class="m-opt max" role="menuitem" href="https://max.ru/ВАШ_ПРОФИЛЬ" target="_blank" rel="noopener noreferrer">
               <span class="ic ic-max"><i data-lucide="message-square"></i></span>
               <span class="m-opt-txt">max<span class="m-opt-sub">есть и в max — пишите</span></span>
+              <span class="ic mb-arrow"><i data-lucide="arrow-up-right"></i></span>
+            </a>
+            <a class="m-opt call" role="menuitem" href="tel:+79201703707">
+              <span class="ic ic-call"><i data-lucide="phone"></i></span>
+              <span class="m-opt-txt">позвонить<span class="m-opt-sub">+7 920 170-37-07 · ответим сразу</span></span>
               <span class="ic mb-arrow"><i data-lucide="arrow-up-right"></i></span>
             </a>
           </div>
@@ -520,6 +532,7 @@
       <div class="hero-meta">
         <span class="live"><i data-lucide="activity"></i><span id="netStats">nodes: 0 · links: 0 · pulses: 0</span></span>
         <span>реакция: ~15 минут</span>
+        <span><a href="tel:+79201703707">+7 920 170-37-07</a></span>
         <span>uptime: <span id="uptime">00:00:00</span></span>
         <span class="scroll-hint">прокрутите <i data-lucide="chevron-down"></i></span>
       </div>
@@ -541,7 +554,7 @@
     <div class="wrap">
       <div class="sec-tag reveal">[01] — услуги</div>
       <h2 class="reveal">Чем мы занимаемся</h2>
-      <p class="sec-sub reveal">Цены честные: «от» — это действительно «от». Без скрытых платежей и звёздочек. Каждая строка раскрывается.</p>
+      <p class="sec-sub reveal">Цены честные: «от» — это действительно «от». Без скрытых платежей и звёздочек. Работаем с бизнесом, школами и государственными учреждениями. Каждая строка раскрывается.</p>
 
       <div id="svcList" class="reveal">
         <div class="svc">
@@ -652,7 +665,7 @@
 
       <div class="tl">
         <div class="tl-item"><span class="tl-dot"></span><span class="tl-num">01</span>
-          <div><h4>Вы пишете</h4><p>Telegram, WhatsApp или Max — любой вопрос от «пропала почта» до «нужен новый сервер».</p><span class="tl-meta">канал: тг / вацап / max</span></div></div>
+          <div><h4>Вы пишете</h4><p>Telegram, WhatsApp, Max или звонок — любой вопрос от «пропала почта» до «нужен новый сервер».</p><span class="tl-meta">тг / вацап / max / звонок</span></div></div>
         <div class="tl-item"><span class="tl-dot"></span><span class="tl-num">02</span>
           <div><h4>Ответ за 15 минут</h4><p>Уточняем задачу и сразу называем сроки и стоимость. Без «мы посмотрим» и «перезвоним».</p><span class="tl-meta">≈ 15 минут</span></div></div>
         <div class="tl-item"><span class="tl-dot"></span><span class="tl-num">03</span>
@@ -758,19 +771,25 @@
         </div>
         <div class="faq">
           <button class="faq-q" aria-expanded="false">
-            <span class="q-num">Q2</span><span>А если вы не справитесь?</span><i data-lucide="chevron-down"></i>
+            <span class="q-num">Q2</span><span>Работаете со школами и госучреждениями?</span><i data-lucide="chevron-down"></i>
+          </button>
+          <div class="faq-body"><div class="faq-in"><p>Да, работаем и оформляем как самозанятый: договор оказания услуг, счёт на оплату (безнал или перевод), закрывающий документ — чек из приложения «Мой налог». Для школ и бюджетных организаций это законный и самый быстрый путь: небольшие объёмы услуг можно закупать у единственного исполнителя без тендера. Договор, счёт и акты готовим сами — от вас нужны только реквизиты.</p></div></div>
+        </div>
+        <div class="faq">
+          <button class="faq-q" aria-expanded="false">
+            <span class="q-num">Q3</span><span>А если вы не справитесь?</span><i data-lucide="chevron-down"></i>
           </button>
           <div class="faq-body"><div class="faq-in"><p>Мы не берём задачи, в результате которых не уверены. Если видим, что задача не наша — честно скажем об этом до начала работ и подскажем, к кому обратиться.</p></div></div>
         </div>
         <div class="faq">
           <button class="faq-q" aria-expanded="false">
-            <span class="q-num">Q3</span><span>Нужно ли менять оборудование?</span><i data-lucide="chevron-down"></i>
+            <span class="q-num">Q4</span><span>Нужно ли менять оборудование?</span><i data-lucide="chevron-down"></i>
           </button>
           <div class="faq-body"><div class="faq-in"><p>Нет. Сначала оптимизируем то, что уже есть, — обновления, настройка, наведение порядка в ПО. Новые закупки предлагаем, только если без них действительно никак.</p></div></div>
         </div>
         <div class="faq">
           <button class="faq-q" aria-expanded="false">
-            <span class="q-num">Q4</span><span>Есть ли пробный период?</span><i data-lucide="chevron-down"></i>
+            <span class="q-num">Q5</span><span>Есть ли пробный период?</span><i data-lucide="chevron-down"></i>
           </button>
           <div class="faq-body"><div class="faq-in"><p>Да: первый аудит — бесплатно, пробный период — 3 дня без обязательств. Если не подойдёт — просто не продолжайте.</p></div></div>
         </div>
@@ -916,27 +935,33 @@
     <div class="wrap">
       <div class="sec-tag reveal">[09] — контакт</div>
       <h2 class="reveal">Свяжитесь с нами</h2>
-      <p class="sec-sub reveal">Telegram, WhatsApp, Max или заявка на сайте — отвечаем в течение 15 минут.</p>
+      <p class="sec-sub reveal">Telegram, WhatsApp, Max, звонок или заявка на сайте — отвечаем в течение 15 минут.</p>
 
       <div class="contact-grid reveal">
         <div class="contact-left">
-          <!-- ЗАМЕНИТЕ your_telegram, your_number и ВАШ_ПРОФИЛЬ на реальные контакты -->
-          <a class="msg-btn tg" href="https://t.me/your_telegram" target="_blank" rel="noopener noreferrer">
+          <a class="msg-btn tg" href="https://t.me/+79201703707" target="_blank" rel="noopener noreferrer">
             <span class="ic ic-tg"><i data-lucide="send"></i></span>
-            <span class="mb-txt">telegram<span class="mb-sub">быстрее всего · ответ ~15 минут</span></span>
+            <span class="mb-txt">telegram<span class="mb-sub">по номеру +7 920 170-37-07 · ответ ~15 минут</span></span>
             <span class="ic mb-arrow"><i data-lucide="arrow-up-right"></i></span>
           </a>
-          <a class="msg-btn wa" href="https://wa.me/your_number" target="_blank" rel="noopener noreferrer">
+          <a class="msg-btn wa" href="https://wa.me/79201703707" target="_blank" rel="noopener noreferrer">
             <span class="ic ic-wa"><i data-lucide="message-circle"></i></span>
-            <span class="mb-txt">whatsapp<span class="mb-sub">если телеграм неудобен</span></span>
+            <span class="mb-txt">whatsapp<span class="mb-sub">по номеру +7 920 170-37-07</span></span>
             <span class="ic mb-arrow"><i data-lucide="arrow-up-right"></i></span>
           </a>
+          <!-- ЗАМЕНИТЕ ВАШ_ПРОФИЛЬ на ссылку вашего профиля в Max -->
           <a class="msg-btn max" href="https://max.ru/ВАШ_ПРОФИЛЬ" target="_blank" rel="noopener noreferrer">
             <span class="ic ic-max"><i data-lucide="message-square"></i></span>
             <span class="mb-txt">max<span class="mb-sub">есть и в max — пишите</span></span>
             <span class="ic mb-arrow"><i data-lucide="arrow-up-right"></i></span>
           </a>
+          <a class="msg-btn call" href="tel:+79201703707">
+            <span class="ic ic-call"><i data-lucide="phone"></i></span>
+            <span class="mb-txt">позвонить<span class="mb-sub">+7 920 170-37-07 · ответим сразу</span></span>
+            <span class="ic mb-arrow"><i data-lucide="arrow-up-right"></i></span>
+          </a>
           <ul class="facts">
+            <li><i data-lucide="check"></i>бизнес, школы и госучреждения</li>
             <li><i data-lucide="check"></i>первый аудит — бесплатно</li>
             <li><i data-lucide="check"></i>работаем по всей россии</li>
             <li><i data-lucide="check"></i>всё удалённо — без выездов</li>
@@ -959,7 +984,7 @@
             <input type="text" id="fCompany" name="company" tabindex="-1" autocomplete="off"></div>
           <div class="form-foot">
             <button type="submit" class="btn btn-pri">оставить заявку <i data-lucide="send"></i></button>
-            <span class="form-note">текст заявки скопируется и откроется telegram — вставьте его в чат</span>
+            <span class="form-note">заявка уходит нам — ответим в течение 15 минут</span>
           </div>
         </form>
       </div>
@@ -1029,7 +1054,7 @@
 <footer>
   <div class="wrap foot-in">
     <span class="foot-brand">ITSupport</span>
-    <span><a href="#status">статус заявки</a> · <a href="#operator">для команды</a> · <a href="https://t.me/your_telegram" target="_blank" rel="noopener noreferrer">telegram</a> · <a href="https://wa.me/your_number" target="_blank" rel="noopener noreferrer">whatsapp</a> · <a href="https://max.ru/ВАШ_ПРОФИЛЬ" target="_blank" rel="noopener noreferrer">max</a></span>
+    <span><a href="#status">статус заявки</a> · <a href="#operator">для команды</a> · <a href="tel:+79201703707">+7 920 170-37-07</a> · <a href="https://t.me/+79201703707" target="_blank" rel="noopener noreferrer">telegram</a> · <a href="https://wa.me/79201703707" target="_blank" rel="noopener noreferrer">whatsapp</a> · <a href="https://max.ru/ВАШ_ПРОФИЛЬ" target="_blank" rel="noopener noreferrer">max</a></span>
     <span>© 2025 · ит-аутсорсинг по всей россии · первый аудит бесплатно</span>
   </div>
 </footer>
@@ -1038,8 +1063,81 @@
 
 <script>
 /* ===== утилиты ===== */
-const TG_URL = 'https://t.me/your_telegram'; /* ЗАМЕНИТЕ на ваш ник в Telegram */
+const TG_URL = 'https://t.me/+79201703707'; /* чат открывается по вашему номеру телефона */
 const $ = id => document.getElementById(id);
+
+/* ===== CRM: автоматическая отправка заявки =====
+   ВАЖНО: Вставьте ваш webhook URL из CRM (Настройки → Интеграции → Сайт).
+   Где взять:
+     1. Откройте CRM https://crm.itsupport-russia.ru/
+     2. Зайдите в «Настройки» → «Интеграции»
+     3. В карточке «Сайт» поставьте галочку «Активна», нажмите «Сохранить»
+     4. Скопируйте появившийся Webhook URL целиком
+     5. Замените значение CRM_WEBHOOK_URL ниже */
+const CRM_WEBHOOK_URL = 'https://crm.itsupport-russia.ru/webhooks/site.php?secret=d5f5610ef4ad099e2c2ecdee1bfe411b'; /* ВСТАВЬТЕ ВАШ WEBHOOK URL СЮДА */
+
+async function sendToCRM(data){
+  if (!CRM_WEBHOOK_URL) return null; /* CRM не подключена — fallback на мессенджер */
+
+  /* Извлекаем UTM-метки — откуда пришёл клиент (для маркетинга) */
+  const utm = {};
+  try {
+    const url = new URL(window.location.href);
+    ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(k => {
+      const v = url.searchParams.get(k);
+      if (v) utm[k] = v;
+    });
+  } catch (e) {}
+
+  /* Формируем тело запроса в формате, который ждёт CRM ПОТОК */
+  const crmPayload = {
+    title: data.title || `Заявка с сайта ITSupport — ${data.name || 'клиент'}`,
+    description: [
+      data.task || '',
+      data.estimate ? `\n--- Смета из калькулятора ---\n${data.estimate}` : '',
+      Object.keys(utm).length ? `\n--- UTM-метки ---\n${JSON.stringify(utm, null, 2)}` : '',
+      data.claim ? `\nНомер на сайте: ${data.claim}` : '',
+    ].join('\n').trim(),
+    clientName: data.name || '',
+    clientPhone: data.contact || '',
+    clientContact: data.contact || '',
+    reward: data.reward || 0,
+    source: 'site',
+  };
+
+  try {
+    const r = await fetch(CRM_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(crmPayload),
+    });
+    if (!r.ok) return false;
+    const resp = await r.json();
+    /* Если CRM вернула номер — сохраняем связь с трекером статуса на сайте */
+    if (resp && resp.ok && resp.num) {
+      try {
+        const c = JSON.parse(localStorage.getItem('its-claims-v1') || '{}');
+        if (data.claim && c[data.claim]) {
+          c[data.claim].crmNum = resp.num;
+          c[data.claim].crmId = resp.leadId;
+          localStorage.setItem('its-claims-v1', JSON.stringify(c));
+        }
+      } catch (e) {}
+      return { ok: true, num: resp.num, leadId: resp.leadId };
+    }
+    return resp && resp.ok ? { ok: true } : false;
+  } catch (e) {
+    /* CORS не пустил JSON-запрос — уходим в «простой» режим */
+    try {
+      await fetch(CRM_WEBHOOK_URL, {
+        method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify(crmPayload),
+      });
+      return true;
+    } catch (e2){ return false; }
+  }
+}
 
 function toast(msg){ /* DOM + textContent — никакой инъекции пользовательского текста */
   const box = $('toasts'); if (!box) return;
@@ -1292,7 +1390,7 @@ function openExternal(url){ /* открытие без утечки window.opene
 /* ===== 4. печатающийся подзаголовок ===== */
 (() => {
   const el = $('typed');
-  const phrases = ['комплексную ит-поддержку','администрирование серверов','настройку рабочих мест','облачную почту и бэкапы','ит-консультации и аудит'];
+  const phrases = ['комплексную ит-поддержку','администрирование серверов','настройку рабочих мест','поддержку школ и госучреждений','облачную почту и бэкапы','ит-консультации и аудит'];
   if (matchMedia('(prefers-reduced-motion: reduce)').matches){ el.textContent = phrases[0]; return; }
   let pi=0, ci=0, del=false;
   (function tick(){
@@ -1415,19 +1513,43 @@ document.querySelectorAll('.svc-head,.faq-q').forEach(head => {
   $('calcCopy').addEventListener('click', () => {
     copyText(smetaText()).then(ok => toast(ok ? 'смета скопирована — отправьте её нам в telegram' : 'не получилось скопировать — перепишите цифры вручную'));
   });
-  $('calcGo').addEventListener('click', () => {
-    copyText(smetaText());
-    openExternal(TG_URL);
-    toast('смета в буфере обмена — вставьте её в чат');
+  $('calcGo').addEventListener('click', async () => {
+    const btn = $('calcGo');
+    const orig = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = 'отправляем…';
+    const smeta = smetaText();
+    const c = calcState;
+    const res = await sendToCRM({
+      title: 'Смета: ' + c.name + ' × ' + c.qty + ' ' + c.unit,
+      name: 'Клиент с калькулятора',
+      contact: '',
+      task: smeta,
+      estimate: smeta,
+      reward: c.total,
+    });
+    btn.disabled = false;
+    btn.innerHTML = orig;
+    if (window.lucide) lucide.createIcons();
+    if (res && res.ok) {
+      toast('смета отправлена в CRM' + (res.num ? ' · номер ' + res.num : '') + ' — мы свяжемся с вами');
+      try { if (typeof ym === 'function') ym(105215813, 'reachGoal', 'calc_crm'); } catch(e){}
+    } else {
+      copyText(smeta);
+      openExternal(TG_URL);
+      toast('смета в буфере обмена — вставьте её в чат');
+    }
   });
 })();
 
-/* ===== 8. форма заявки ===== */
+/* ===== 8. форма заявки: сначала CRM, затем запасной путь ===== */
 (() => {
   const form = $('orderForm'); if (!form) return;
+  const goal = n => { try { if (typeof ym === 'function') ym(105215813, 'reachGoal', n); } catch (e) {} };
+
   form.addEventListener('submit', e => {
     e.preventDefault();
-    if ($('fCompany').value){ toast('заявка принята'); return; } /* заполнил ханипот — молча игнорируем */
+    if ($('fCompany').value){ toast('заявка принята'); return; } /* ханипот: бот — молча */
 
     let ok = true;
     const checks = [
@@ -1442,18 +1564,37 @@ document.querySelectorAll('.svc-head,.faq-q').forEach(head => {
     });
     if (!ok) return;
 
-    /* номер заявки создан в модуле 9 (перехват срабатывает раньше) — вшиваем его в текст для специалиста */
-    const claimId = form.dataset.claimId ? '\nНомер заявки: ' + form.dataset.claimId : '';
-    const text = 'Заявка с сайта ITSupport' + claimId +
-                 '\nИмя: ' + $('fName').value.trim() +
-                 '\nКонтакт: ' + $('fContact').value.trim() +
-                 '\nЗадача: ' + $('fMsg').value.trim();
-    copyText(text).then(okc => {
-      openExternal(TG_URL);
-      toast(okc ? 'заявка скопирована — вставьте текст в открывшийся чат' : 'не удалось скопировать — напишите нам напрямую в telegram');
-    });
-    delete form.dataset.claimId;
-    form.reset();
+    const nm = $('fName').value.trim(),
+          ct = $('fContact').value.trim(),
+          msg = $('fMsg').value.trim();
+    const claimId = form.dataset.claimId || ''; /* номер создан модулем 9 в фазе перехвата */
+    const btn = form.querySelector('[type=submit]');
+    btn.disabled = true;
+
+    sendToCRM({ claim: claimId, name: nm, contact: ct, task: msg })
+    .then(res => {
+      if (res && res.ok){
+        /* заявка доставлена в CRM */
+        const crmNumText = res.num ? ' · номер в CRM #' + res.num : '';
+        toast('заявка отправлена' + (claimId ? ' · номер ' + claimId : '') + crmNumText + ' — ответим в течение 15 минут');
+        goal('claim_crm');
+        delete form.dataset.claimId;
+        form.reset();
+      } else {
+        /* CRM не настроена или не ответила — запасной путь: текст в мессенджер */
+        const text = 'Заявка с сайта ITSupport' + (claimId ? '\nНомер заявки: ' + claimId : '') +
+                     '\nИмя: ' + nm + '\nКонтакт: ' + ct + '\nЗадача: ' + msg;
+        copyText(text).then(okc => {
+          openExternal(TG_URL);
+          toast(okc
+            ? 'crm не ответила — текст скопирован, вставьте его в telegram'
+            : 'не удалось отправить — позвоните: +7 920 170-37-07');
+        });
+        delete form.dataset.claimId;
+        form.reset();
+      }
+    })
+    .finally(() => { btn.disabled = false; });
   });
   form.querySelectorAll('input,textarea').forEach(i =>
     i.addEventListener('input', () => i.closest('.field')?.classList.remove('err')));
@@ -1805,7 +1946,7 @@ document.querySelectorAll('.svc-head,.faq-q').forEach(head => {
     const store = readLS();
     store[id] = createClaim(id, v(msg).slice(0, 80));
     writeLS(store);
-    e.target.dataset.claimId = id; /* номер попадёт в текст заявки для специалиста */
+    e.target.dataset.claimId = id; /* номер попадёт в заявку для CRM и специалиста */
     inp.value = id;
     render(store[id]);
     toast('заявке присвоен номер ' + id + ' — статус будет в разделе «статус»');
