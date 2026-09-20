@@ -4,7 +4,7 @@
 <!-- CSP: скрипты/стили только с разрешённых доменов; manifest-src data: — для PWA-манифеста.
      Чтобы стать независимым от unpkg: скачайте lucide.min.js, положите рядом с index.html,
      замените src ниже на "lucide.min.js" и уберите " https://unpkg.com" из script-src. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://mc.yandex.ru; manifest-src 'self' data:; connect-src 'self' https://mc.yandex.ru; frame-src https://mc.yandex.ru; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://mc.yandex.ru; manifest-src 'self' data:; connect-src 'self' https://mc.yandex.ru https://crm.itsupport-russia.ru; frame-src https://mc.yandex.ru; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -1074,10 +1074,10 @@ const $ = id => document.getElementById(id);
      3. В карточке «Сайт» поставьте галочку «Активна», нажмите «Сохранить»
      4. Скопируйте появившийся Webhook URL целиком
      5. Замените значение CRM_WEBHOOK_URL ниже */
-const CRM_WEBHOOK_URL = ''; /* ВСТАВЬТЕ ВАШ WEBHOOK URL СЮДА */
+const CRM_WEBHOOK_URL = 'https://crm.itsupport-russia.ru/webhooks/site.php?secret=d5f5610ef4ad099e2c2ecdee1bfe411b';
 
 async function sendToCRM(data){
-  if (!CRM_WEBHOOK_URL) return null; 'https://crm.itsupport-russia.ru/webhooks/site.php?secret=d5f5610ef4ad099e2c2ecdee1bfe411b'
+  if (!CRM_WEBHOOK_URL) return null;
 
   /* Извлекаем UTM-метки — откуда пришёл клиент (для маркетинга) */
   const utm = {};
