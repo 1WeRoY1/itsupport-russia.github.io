@@ -1074,10 +1074,10 @@ const $ = id => document.getElementById(id);
      3. В карточке «Сайт» поставьте галочку «Активна», нажмите «Сохранить»
      4. Скопируйте появившийся Webhook URL целиком
      5. Замените значение CRM_WEBHOOK_URL ниже */
-const CRM_WEBHOOK_URL = 'https://crm.itsupport-russia.ru/webhooks/site.php?secret=d5f5610ef4ad099e2c2ecdee1bfe411b'; /* ВСТАВЬТЕ ВАШ WEBHOOK URL СЮДА */
+const CRM_WEBHOOK_URL = ''; /* ВСТАВЬТЕ ВАШ WEBHOOK URL СЮДА */
 
 async function sendToCRM(data){
-  if (!CRM_WEBHOOK_URL) return null; /* CRM не подключена — fallback на мессенджер */
+  if (!CRM_WEBHOOK_URL) return null; 'https://crm.itsupport-russia.ru/webhooks/site.php?secret=d5f5610ef4ad099e2c2ecdee1bfe411b'
 
   /* Извлекаем UTM-метки — откуда пришёл клиент (для маркетинга) */
   const utm = {};
