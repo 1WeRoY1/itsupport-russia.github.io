@@ -88,6 +88,124 @@
     --neg:#bf4640; --neg-bg:rgba(191,70,64,.07);
   }
 
+  /* ============================================================
+     CYBERPUNK ТЕМА — неоновый фиолетово-розовый
+     ============================================================ */
+  [data-theme="cyber"]{
+    color-scheme:dark;
+    --bg:#050208;
+    --bg-soft:rgba(168,85,247,.05);
+    --panel:rgba(168,85,247,.07);
+    --glass:rgba(168,85,247,.10);
+    --hdr:rgba(5,2,8,.82);
+    --term:rgba(232,121,249,.04);
+    --line:rgba(232,121,249,.20);
+    --text:#f6ecff;
+    --muted:#bfa8d9;
+    --acc-fill:#e879f9;
+    --acc-fill-hi:#f0abfc;
+    --acc-ink:#f0abfc;
+    --acc-ink-soft:#e879f9;
+    --acc-rgb:232,121,249;
+    --on-acc:#2c0536;
+    --err:#ff5fa8;
+    --pos:#5af7c5; --pos-bg:rgba(90,247,197,.07);
+    --neg:#ff5fa8; --neg-bg:rgba(255,95,168,.07);
+  }
+
+  /* Cyberpunk: фон с неоновыми градиентами */
+  html[data-theme="cyber"] body {
+    background:
+      radial-gradient(circle at 20% 20%, rgba(217, 70, 239, 0.18) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(34, 211, 238, 0.08) 0%, transparent 60%),
+      #050208 !important;
+  }
+
+  /* Cyberpunk: неоновое свечение панелей */
+  html[data-theme="cyber"] .panel,
+  html[data-theme="cyber"] .calc-panel,
+  html[data-theme="cyber"] .invoice,
+  html[data-theme="cyber"] .svc,
+  html[data-theme="cyber"] .faq,
+  html[data-theme="cyber"] .case,
+  html[data-theme="cyber"] .diff,
+  html[data-theme="cyber"] .track,
+  html[data-theme="cyber"] .contact-form,
+  html[data-theme="cyber"] .msg-btn,
+  html[data-theme="cyber"] .kb-searchbar {
+    box-shadow:
+      0 0 0 1px rgba(232, 121, 249, 0.15),
+      0 22px 60px rgba(217, 70, 239, 0.20),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+  }
+
+  /* Cyberpunk: кнопки с неоновым свечением */
+  html[data-theme="cyber"] .btn-pri {
+    background: linear-gradient(135deg, #d946ef, #8b5cf6) !important;
+    color: #fff !important;
+    border-color: transparent !important;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 20px rgba(217, 70, 239, 0.6), 0 6px 22px rgba(139, 92, 246, 0.4) !important;
+  }
+
+  html[data-theme="cyber"] .btn-pri:hover {
+    box-shadow: 0 0 30px rgba(217, 70, 239, 0.9), 0 10px 32px rgba(139, 92, 246, 0.6) !important;
+  }
+
+  /* Cyberpunk: эффект glow на input focus */
+  html[data-theme="cyber"] input:focus,
+  html[data-theme="cyber"] select:focus,
+  html[data-theme="cyber"] textarea:focus {
+    border-color: #e879f9 !important;
+    box-shadow: 0 0 0 1px #e879f9, 0 0 20px rgba(232, 121, 249, 0.4) !important;
+    background: rgba(217, 70, 239, 0.05) !important;
+  }
+
+  /* Cyberpunk: заголовок с неоновым свечением */
+  html[data-theme="cyber"] h1 .acc,
+  html[data-theme="cyber"] h2 {
+    text-shadow: 0 0 12px rgba(232, 121, 249, 0.5), 0 0 24px rgba(217, 70, 239, 0.3);
+  }
+
+  /* Cyberpunk: акцентные ссылки и числа */
+  html[data-theme="cyber"] .acc,
+  html[data-theme="cyber"] .inv-id,
+  html[data-theme="cyber"] .case-stat b,
+  html[data-theme="cyber"] .stats b {
+    text-shadow: 0 0 8px rgba(232, 121, 249, 0.5);
+  }
+
+  /* Cyberpunk: декоративная сетка на фоне */
+  html[data-theme="cyber"] body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(232, 121, 249, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232, 121, 249, 0.04) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+    animation: cyber-grid 60s linear infinite;
+  }
+
+  @keyframes cyber-grid {
+    from { transform: translate(0, 0); }
+    to { transform: translate(50px, 50px); }
+  }
+
+  /* Cyberpunk: третья иконка темы */
+  html[data-theme="dark"] .ico-cyber,
+  html[data-theme="light"] .ico-cyber,
+  html[data-theme="cyber"] .ico-moon,
+  html[data-theme="cyber"] .ico-sun {
+    display: none;
+  }
+  html[data-theme="cyber"] .ico-cyber {
+    display: flex;
+  }
+
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth;scroll-padding-top:84px}
   body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;overflow-x:hidden;transition:background .3s,color .3s}
@@ -426,6 +544,20 @@
     html{scroll-behavior:auto}
   }
 
+
+
+  /* Иконка молнии для темы Cyberpunk */
+  .ico-cyber{display:none}
+  .ico-cyber svg{color:#e879f9;filter:drop-shadow(0 0 4px rgba(232,121,249,.7))}
+  html[data-theme="dark"] .ico-cyber,
+  html[data-theme="light"] .ico-cyber{display:none}
+  html[data-theme="cyber"] .ico-cyber{display:flex}
+  html[data-theme="cyber"] .ico-moon,
+  html[data-theme="cyber"] .ico-sun{display:none}
+
+  /* Cyberpunk: иконка с эффектом неона */
+  html[data-theme="cyber"] .theme-btn:hover{border-color:rgba(232,121,249,.55);box-shadow:0 0 12px rgba(232,121,249,.3)}
+
   @media(max-width:1040px){.hdr-r .btn-ghost{display:none}}
   @media(max-width:1020px){.nav{gap:16px}.nav a{font-size:12px}}
   @media(max-width:900px){
@@ -467,9 +599,10 @@
       <a href="#contact">контакт</a>
     </nav>
     <div class="hdr-r">
-      <button class="theme-btn" id="themeToggle" aria-label="переключить тему" aria-pressed="false">
+      <button class="theme-btn" id="themeToggle" aria-label="переключить тему" aria-pressed="false" title="Цикл: тёмная → светлая → cyberpunk">
         <span class="ico-moon"><i data-lucide="moon"></i></span>
         <span class="ico-sun"><i data-lucide="sun"></i></span>
+        <span class="ico-cyber"><i data-lucide="zap"></i></span>
       </button>
       <a href="#contact" class="btn btn-ghost btn-sm">обсудить задачу</a>
       <a href="tel:+79201703707" class="btn btn-pri btn-sm" style="margin-right:4px"><i data-lucide="phone"></i> срочно</a>
@@ -1359,13 +1492,16 @@ function openExternal(url){ /* открытие без утечки window.opene
   setInterval(() => { statsEl.textContent = `nodes: ${nodes.length} · links: ${linkCount} · pulses: ${pulses.length}`; }, 600);
 })();
 
-/* ===== 2. тема ===== */
+/* ===== 2. тема (цикл: dark → light → cyber → dark) ===== */
 (() => {
   const btn = $('themeToggle');
+  const THEMES = ['dark', 'light', 'cyber'];
   const sync = () => btn.setAttribute('aria-pressed', String(document.documentElement.dataset.theme === 'light'));
   sync();
   btn.addEventListener('click', () => {
-    const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+    const cur = document.documentElement.dataset.theme || 'dark';
+    const idx = THEMES.indexOf(cur);
+    const next = THEMES[(idx + 1) % THEMES.length];
     document.documentElement.dataset.theme = next;
     try { localStorage.setItem('its-theme', next); } catch(e){}
     sync();
@@ -2048,11 +2184,13 @@ document.querySelectorAll('.svc-head,.faq-q').forEach(head => {
 (() => {
   try {
     function mk(){
-      const light = document.documentElement.dataset.theme === 'light';
+      const theme = document.documentElement.dataset.theme || 'dark';
+      const bgCol = theme === 'light' ? '#f1efe9' : theme === 'cyber' ? '#050208' : '#0a0e13';
+      const accCol = theme === 'cyber' ? '#e879f9' : '#ffb454';
       const icon = 'data:image/svg+xml,' + encodeURIComponent(
         '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">' +
-        '<rect width="512" height="512" rx="96" fill="' + (light ? '#f1efe9' : '#0a0e13') + '"/>' +
-        '<text x="256" y="336" font-family="monospace" font-size="216" font-weight="700" text-anchor="middle" fill="#ffb454">IT_</text></svg>');
+        '<rect width="512" height="512" rx="96" fill="' + bgCol + '"/>' +
+        '<text x="256" y="336" font-family="monospace" font-size="216" font-weight="700" text-anchor="middle" fill="' + accCol + '">IT_</text></svg>');
       const man = {
         name: 'ITSupport — ИТ-аутсорсинг',
         short_name: 'ITSupport',
