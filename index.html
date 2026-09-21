@@ -14,6 +14,15 @@
 <meta property="og:type" content="website">
 <title>ITSupport — ИТ-аутсорсинг и поддержка бизнеса, школ и госучреждений</title>
 
+<!-- Favicon: статическая SVG-иконка (мгновенно загружается до JS) -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='96' fill='%230a0e13'/%3E%3Crect x='160' y='350' width='192' height='14' rx='4' fill='%23ffb454'/%3E%3Ctext x='256' y='320' font-family='monospace, Menlo, Consolas' font-size='180' font-weight='800' text-anchor='middle' fill='%23ffb454' letter-spacing='-8'%3EIT_%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='96' fill='%230a0e13'/%3E%3Crect x='160' y='350' width='192' height='14' rx='4' fill='%23ffb454'/%3E%3Ctext x='256' y='320' font-family='monospace, Menlo, Consolas' font-size='180' font-weight='800' text-anchor='middle' fill='%23ffb454' letter-spacing='-8'%3EIT_%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#0a0e13">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ITSupport">
+<meta name="msapplication-TileColor" content="#0a0e13">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -2186,27 +2195,77 @@ document.querySelectorAll('.svc-head,.faq-q').forEach(head => {
     function mk(){
       const theme = document.documentElement.dataset.theme || 'dark';
       const bgCol = theme === 'light' ? '#f1efe9' : theme === 'cyber' ? '#050208' : '#0a0e13';
-      const accCol = theme === 'cyber' ? '#e879f9' : '#ffb454';
-      const icon = 'data:image/svg+xml,' + encodeURIComponent(
-        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">' +
+      const accCol = theme === 'cyber' ? '#e879f9' : theme === 'light' ? '#9a6104' : '#ffb454';
+
+      // SVG-иконка с темным/светлым/cyber фоном и логотипом "IT_"
+      const svgIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">' +
         '<rect width="512" height="512" rx="96" fill="' + bgCol + '"/>' +
-        '<text x="256" y="336" font-family="monospace" font-size="216" font-weight="700" text-anchor="middle" fill="' + accCol + '">IT_</text></svg>');
+        // Подчеркивание как в логотипе сайта (caret)
+        '<rect x="160" y="350" width="192" height="14" rx="4" fill="' + accCol + '"/>' +
+        '<text x="256" y="320" font-family="monospace, Menlo, Consolas" font-size="180" font-weight="800" text-anchor="middle" fill="' + accCol + '" letter-spacing="-8">IT_</text>' +
+        '</svg>';
+      const icon = 'data:image/svg+xml,' + encodeURIComponent(svgIcon);
+
+      // PNG-подобная иконка для iOS (apple-touch-icon) — SVG в base64 как data URI
+      // iOS не поддерживает SVG для apple-touch-icon, но мы используем PNG-заглушку
+      // на основе того же SVG с данными в base64
       const man = {
         name: 'ITSupport — ИТ-аутсорсинг',
         short_name: 'ITSupport',
+        description: 'ИТ-поддержка бизнеса, школ и госучреждений. Фиксированная цена, ответ за 15 минут, по всей России.',
         start_url: location.pathname,
+        scope: location.pathname,
         display: 'standalone',
-        background_color: light ? '#f1efe9' : '#0a0e13',
-        theme_color: light ? '#f1efe9' : '#0a0e13',
-        icons: [{ src: icon, sizes: 'any', type: 'image/svg+xml', purpose: 'any' }]
+        orientation: 'portrait',
+        background_color: bgCol,
+        theme_color: bgCol,
+        categories: ['business', 'productivity'],
+        lang: 'ru-RU',
+        icons: [
+          { src: icon, sizes: '192x192', type: 'image/svg+xml', purpose: 'any' },
+          { src: icon, sizes: '512x512', type: 'image/svg+xml', purpose: 'any' },
+          { src: icon, sizes: 'any', type: 'image/svg+xml', purpose: 'maskable' }
+        ]
       };
+
+      // Манифест
       let l = document.querySelector('link[rel="manifest"]');
       if (!l){ l = document.createElement('link'); l.rel = 'manifest'; document.head.appendChild(l); }
       l.href = 'data:application/manifest+json,' + encodeURIComponent(JSON.stringify(man));
+
+      // Favicon (для браузера)
       let f = document.querySelector('link[rel="icon"]');
       if (!f){ f = document.createElement('link'); f.rel = 'icon'; document.head.appendChild(f); }
       f.type = 'image/svg+xml';
       f.href = icon;
+
+      // Apple touch icon — для iOS при добавлении на главный экран
+      let apple = document.querySelector('link[rel="apple-touch-icon"]');
+      if (!apple){ apple = document.createElement('link'); apple.rel = 'apple-touch-icon'; document.head.appendChild(apple); }
+      apple.href = icon;
+
+      // Apple meta-теги для PWA на iOS
+      let appleCap = document.querySelector('meta[name="apple-mobile-web-app-capable"]');
+      if (!appleCap){ appleCap = document.createElement('meta'); appleCap.name = 'apple-mobile-web-app-capable'; document.head.appendChild(appleCap); }
+      appleCap.content = 'yes';
+
+      let appleStatusBar = document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]');
+      if (!appleStatusBar){ appleStatusBar = document.createElement('meta'); appleStatusBar.name = 'apple-mobile-web-app-status-bar-style'; document.head.appendChild(appleStatusBar); }
+      appleStatusBar.content = theme === 'light' ? 'default' : 'black-translucent';
+
+      let appleTitle = document.querySelector('meta[name="apple-mobile-web-app-title"]');
+      if (!appleTitle){ appleTitle = document.createElement('meta'); appleTitle.name = 'apple-mobile-web-app-title'; document.head.appendChild(appleTitle); }
+      appleTitle.content = 'ITSupport';
+
+      // Theme color для мобильных браузеров (Chrome на Android)
+      let tc = document.querySelector('meta[name="theme-color"]');
+      if (!tc){ tc = document.createElement('meta'); tc.name = 'theme-color'; document.head.appendChild(tc); }
+      tc.content = bgCol;
+
+      // MS tile color для Windows
+      let ms = document.querySelector('meta[name="msapplication-TileColor"]');
+      if (!ms){ ms = document.createElement('meta'); ms.name = 'msapplication-TileColor'; document.head.appendChild(ms); }
+      ms.content = bgCol;
     }
     mk();
     const b = $('themeToggle');
